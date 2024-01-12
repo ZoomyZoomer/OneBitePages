@@ -1,0 +1,629 @@
+html, body{
+    width: 100%;
+    height: 3000px;
+    margin: 0;
+}
+
+a {
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: "Zilla Slab", sans-serif;
+}
+
+/* NAVBAR */
+
+.navbarMainFlex {
+    height: 60px;
+    width: 100%;
+    background-color: #222;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    font-size: 18px;
+}
+
+.navbarMainFlex, .navbarLeftFlex, .navbarRightFlex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #f8f8f8;
+}
+
+.navbarMainFlex > div {
+    margin: 0 400px;
+}
+
+.navbarLeftFlex > a {
+    padding-left: 10px;
+    width: 110px;
+    margin: 0;
+}
+
+.navbarLeftFlex {
+    font-size: 20px;
+}
+
+.cookieHolder {
+    position: relative;
+}
+
+#cookie {
+    cursor: pointer;
+}
+
+#fullcookie {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.rotateCookie {
+    animation: rotateCookie 1s 1 ease-in-out;
+}
+
+.eatCookie {
+    animation: eatCookie 1s 1 ease-in-out;
+}
+
+@keyframes eatCookie {
+    0%{
+        transform: scale(1);
+        transform: rotate(0deg);
+    }
+    25%{
+        height: 35px;
+    }
+    50%{
+        height: 40px;
+        transform: rotate(20deg);
+    }
+    100%{
+        height: 40px;
+        transform: rotate(0deg);
+    }
+}
+
+#fullcookie {
+    cursor: pointer;
+}
+
+.fullcookieheight {
+    height: 40px;
+}
+
+@keyframes rotateCookie {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+.noOpacity {
+    opacity: 0;
+}
+
+.pencilHolder {
+    position: relative;
+}
+
+#pencil {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#pencil:hover {
+    animation: shake 1.5s infinite ease-in-out;
+}
+
+@keyframes shake {
+    0%{
+        transform: rotate(0deg);
+    }
+    33%{
+        transform: rotate(-15deg);
+    }
+    66%{
+        transform: rotate(15deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+#plus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.navbarLeftFlex > a {
+    margin-right: 40px;
+}
+
+.navbarRightFlex > div {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.navbarRightFlex > div > a {
+    margin: 0 20px;
+}
+
+.navbarRightFlex > div:hover {
+    cursor: pointer;
+    background-color: #383838;
+}
+
+/* MAINHEADER */
+
+.mainHeaderWrap{
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 450px;
+    width: 100%;
+    border-bottom-color: #222;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.mainHeaderWrap > div > p {
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    color: #222;
+}
+
+.cookieHolderMain {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: auto;
+}
+
+#cookieMain {
+    position: absolute;
+    cursor: auto;
+    height: 350px;
+    z-index: 100;
+}
+
+#blackhole {
+    z-index: -1;
+    position: absolute;
+}
+
+.fullcookieMain {
+    height: 300px;
+    transition: height 0.5s;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.mimicHeight {
+    height: 300px;
+    width: 1px;
+}
+
+.fullcookieMain:hover {
+    transition: height 0.5s;
+    height: 325px;
+}
+
+.cookieContainer:hover {
+    transition: scale 0.5s;
+    transform: scale(1.2);
+}
+
+.fullcookieMainBounce {
+    animation: fullcookieMainBounce 1s 1 ease-in-out;
+    height: 325px;
+}
+
+@keyframes fullcookieMainBounce {
+    0%{
+        height: 300px;
+    }
+    100%{
+        height: 325px;
+    }
+}
+
+.fullcookieMainUnbounce {
+    animation: fullcookieMainUnbounce 1s 1 ease-in-out;
+}
+
+@keyframes fullcookieMainUnbounce {
+    0%{
+        height: 325px;
+    }
+    100%{
+        height: 300px;
+    }
+}
+
+.idleCookie {
+    animation: idleCookie 20s infinite linear;
+}
+
+@keyframes idleCookie {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.eatCookieMain {
+    animation: eatCookieMain 1.5s 1 ease-in-out;
+}
+
+@keyframes eatCookieMain{
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        height: 325px;
+    }
+    50%{
+        height: 375px;
+        transform: rotate(20deg);
+    }
+    100%{
+        height: 350px;
+        transform: rotate(0deg);
+    }
+}
+
+.miniText {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -80px;
+    font-size: 12px;
+}
+
+.miniText > h4 {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    margin-top: -50px;
+}
+
+/* ARTICLES */
+
+.defaultGrid {
+    height: fit-content;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.defaultGridLeft {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 350px;
+    object-fit: contain;
+}
+
+.defaultGridLeftImage {
+    display: grid;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    width: 350px;
+    object-fit: contain;
+}
+
+.defaultGridLeftSmall {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 190px;
+    object-fit: contain; 
+}
+
+#TwentyMarginTop {
+    margin-top: 20px;
+}
+
+.defaultGridLeftSmallImage {
+    display: grid;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    width: 175px;
+    object-fit: contain; 
+}
+
+
+.defaultGridRight {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+    margin-top: 50px;
+}
+
+.defaultGridRight > h4 {
+    margin-right: 10px;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    color:#222;
+    font-size: 10px;
+}
+
+.defaultGridLeftSmall {
+    margin: 0 5px;
+}
+
+.defaultGridLeftSmall > h1 {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    color:#222;
+}
+
+.defaultGridLeftSmall > h4 {
+    margin-top: -5px;
+    font-family: "Lato", sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color:#222;
+}
+
+.defaultGridLeft > section > h1 {
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    color:#222;
+}
+
+.defaultGridLeft > section > p {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    color:#222;
+    font-size: 15px;
+    margin: 0;
+    line-height: 15px;
+}
+
+.defaultGridLeft > section > h4 {
+    margin-top: 5px;
+    font-family: "Lato", sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.pageBorder {
+    width: 1px;
+    margin-top: 100px;
+    margin-left: 20px;
+    height: 500px;
+    border-left-color:#222;
+    border-left-style: dashed;
+    border-left-width: 1px;
+}
+
+.borderBottom {
+    cursor: pointer;
+    border-bottom-style: dashed;
+    border-bottom-color:#e0e0e0;
+    border-bottom-width: 1px;
+}
+
+.defaultFlex {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+}
+
+.defaultFlexLeft {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    text-align: center;
+    border-bottom-color: #686868;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+}
+
+.defaultGridLeft > heading {
+    font-size: 20px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.defaultFlexLeft > heading {
+    font-size: 30px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.borderRight > div > p {
+    font-weight: 500;
+    font-family: "Zilla Slab", sans-serif;
+    font-size: 14px;
+    width: 250px;
+}
+
+.borderRight > div > h4 {
+    margin-top: -10px;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+}
+
+.fonts {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #222;
+    padding-top: 20px;
+}
+
+.fonts > h1 {
+    margin-bottom: 8px;
+    font-size: 25px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    color:#222;
+}
+
+.fonts > p {
+    margin-top: 0;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    width: 300px;
+    color:#383838;
+}
+
+.fonts > h4 {
+    margin-top: -10px;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    font-size: 10px;
+}
+
+.borderRight {
+    border-right-style: dashed;
+    border-right-color: #e0e0e0;
+    border-right-width: 1px;
+    cursor: pointer;
+}
+
+#image {
+    height: 400px;
+    margin-left: 20px;
+}
+
+#sideImage {
+    height: 250px;
+}
+
+#sideImageSmall{
+    width: 175px;
+    height: 100px;
+}
+
+#side {
+    margin-left: 20px;
+}
+
+/* TAGS NAV */
+
+.tagsGrid {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-color: #222;
+    border-bottom-width: 1px;
+}
+
+.tagsNavFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.tagsNavFlex > div > p {
+    margin: 0 20px;
+    font-family: "Zilla Slab", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.tagsNavFlex > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 56px;
+}
+
+#searchDiv {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#searchDiv:hover {
+    cursor: auto;
+    background-color: white;
+}
+
+.tagsNavFlex > div:hover {
+    cursor: pointer;
+    background-color: #ebebeb;
+}
+
+/* OTHERS */
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #f8f8f8;
+}
+
+form.login, form.register {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 5px 7px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+button {
+    width: 100%;
+    display: block;
+    background-color: #555;
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px 0;
+}
+
+form h1 {
+    text-align: center;
+}
