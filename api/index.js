@@ -68,22 +68,28 @@ app.post('/logout', (req, res) => {
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
-    const {originalname, path} = req.file;
-    const parts = originalname.split('.');
-    const ext = parts[parts.length - 1];
-    const newPath = path+'.'+ext;
-    fs.renameSync(path, newPath);
 
-    const {title, description, content} = req.body;
+    const {title, description, content, topic} = req.body;
 
-    const postDoc = await Post.create({
-        title,
-        description,
-        content,
-        img: newPath,
-    });
-
-    res.json(postDoc);
+    try {
+        const {originalname, path} = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        const newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
+        
+        const postDoc = await Post.create({
+            title,
+            description,
+            content,
+            topic,
+            img: newPath,
+        });
+        res.json(postDoc);
+    } catch (e) {
+        res.status(400).json(e);
+    }
+    
 
 });
 
