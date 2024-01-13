@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
 import { propsListMain } from '../data/articlesData.js'
 import { propsListSmall } from '../data/smallarticlesData.js';
+import {formatRelative, subDays} from "date-fns";
 
 function ArticleMain(props){
-
-  console.log(props.type);
 
   return (
     <section className="borderBottom">
@@ -31,7 +30,7 @@ function ArticleBottom(props){
   
 }
 
-function Articles() {
+function Articles({title, description, createdAt}) {
 
   return (
     <section className="defaultGrid">
@@ -40,13 +39,11 @@ function Articles() {
       </div>
         <div className="defaultFlexLeft">
             <div className="defaultGridLeft">
-                {propsListMain.map((props) => (
-                    <ArticleMain title={props.title} description={props.description} author={props.author}/>
-                ))} 
+                    <ArticleMain title={title} description={description}/>
             </div>
             <div className="defaultGridRight">
               <img id="image" src="sleeping.jpg"></img>
-              <h4>Stock Image</h4>
+              <time>{formatRelative(subDays(new Date(createdAt), 0), new Date())}</time>
             </div>
         </div>
         <div className="defaultFlex">

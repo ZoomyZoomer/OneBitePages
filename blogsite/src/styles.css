@@ -11,7 +11,22 @@ a {
 }
 
 h1 {
+    font-weight: 400;
+}
+
+h2, h3 {
+    font-weight: 400;
+}
+
+h1, h2, h3 {
     font-family: "Zilla Slab", sans-serif;
+    color:#222;
+}
+
+p {
+    font-family: "Lato", sans-serif;
+    color:#222;
+    font-weight: 300;
 }
 
 /* NAVBAR */
@@ -624,6 +639,6 @@ button {
     padding: 7px 0;
 }
 
-form h1 {
+form.login h1, form.register h1 {
     text-align: center;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 import { faCookie } from '@fortawesome/free-solid-svg-icons'
@@ -6,10 +6,32 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
+import { UserContext } from '../UserContext'
 
 
 
 export default function Navbar() {
+
+const {setUserInfo, userInfo} = useContext(UserContext);
+const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/profile', {
+      credentials: 'include',
+    }).then(res => {
+      res.json().then(userInfo => {
+        setUsername(userInfo?.username);
+      })
+    })
+  })
+
+  function logout() {
+    fetch('http://localhost:4000/logout', {
+      credentials: 'include',
+      method: 'POST',
+    });
+    setUserInfo(null);
+  }
 
   let clicked = 0;
 
@@ -47,16 +69,26 @@ export default function Navbar() {
             
         </div>
         <div className="navbarRightFlex">
-            <div className="pencilHolder">
-              <FontAwesomeIcon id="pencil" icon={faPencil} color="#f8f8f8" size="xl"/>
-              <FontAwesomeIcon id="plus" icon={faPlus} color="#f8f8f8" size="sm"/>
-            </div>
-            <div>
-              <Link id="register" to="/register">Register</Link>
-            </div>
-            <div>
-              <Link id="login" to="/login">Login</Link>
-            </div>
+          {username && (
+            <>
+              <Link to="/create" className="pencilHolder">
+                <FontAwesomeIcon id="pencil" icon={faPencil} color="#f8f8f8" size="xl"/>
+                <FontAwesomeIcon id="plus" icon={faPlus} color="#f8f8f8" size="sm"/>
+              </Link>
+              <a onClick={logout}>Logout</a>
+            </>
+            )}
+            {!username && (
+              <>
+                <div>
+                  <Link id="register" to="/register">Register</Link>
+                </div>
+                <div>
+                  <Link id="login" to="/login">Login</Link>
+                </div>
+              </>
+            )}
+            
         </div>
 
     </section>
