@@ -97,6 +97,10 @@ app.get('/post', async (req, res) => {
     res.json(await Post.find());
 })
 
+app.get('/programming', async (req, res) => {
+    res.json(await Post.find({topic: "programming"}));
+})
+
 app.listen(4000);
 
 

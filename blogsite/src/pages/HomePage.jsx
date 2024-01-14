@@ -7,6 +7,7 @@ import TagsNav from "../components/TagsNav";
 function HomePage() {
 
   const [posts, setPosts] = useState([]);
+  const [programmingPosts, setProgrammingPosts] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:4000/post').then(response => {
@@ -15,6 +16,14 @@ function HomePage() {
       });
     });
   }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/programming').then(response => {
+      response.json().then(posts => {
+        setProgrammingPosts(posts);
+      })
+    });
+  } , []);
 
   return (
     <div>
@@ -26,7 +35,8 @@ function HomePage() {
                 <SideArticles />
             </div>
         </div>
-        {posts.length > 0 && posts.map(post => (
+        {programmingPosts.length > 0 && programmingPosts.map(post => (
+          console.log(programmingPosts),
           <Articles {...post} />
         ))}
     </div>

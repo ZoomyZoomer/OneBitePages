@@ -43,7 +43,6 @@ function Articles({title, description, createdAt}) {
             </div>
             <div className="defaultGridRight">
               <img id="image" src="sleeping.jpg"></img>
-              <time>{formatRelative(subDays(new Date(createdAt), 0), new Date())}</time>
             </div>
         </div>
         <div className="defaultFlex">
