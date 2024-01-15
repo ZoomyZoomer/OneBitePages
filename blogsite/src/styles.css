@@ -355,7 +355,8 @@ p {
     justify-content: center;
     align-items: center;
     text-align: left;
-    width: 190px;
+    width: 275px;
+    padding-left: 40px;
     object-fit: contain; 
 }
 
@@ -482,14 +483,18 @@ p {
     margin-bottom: 5px;
 }
 
-.borderRight > div > p {
+#botFlex {
+    margin-left: 20px;
+}
+
+.borderRight > div > div > p {
     font-weight: 500;
     font-family: "Zilla Slab", sans-serif;
     font-size: 14px;
     width: 250px;
 }
 
-.borderRight > div > h4 {
+.borderRight > div > div > h4 {
     margin-top: -10px;
     font-weight: 300;
     font-family: "Lato", sans-serif;
@@ -533,6 +538,7 @@ p {
     border-right-color: #e0e0e0;
     border-right-width: 1px;
     cursor: pointer;
+    padding-left: 5px;
 }
 
 #image {
@@ -541,7 +547,8 @@ p {
 }
 
 #sideImage {
-    height: 250px;
+    margin-left: 30px;
+    height: 400px;
 }
 
 #sideImageSmall{

@@ -12,18 +12,16 @@ import { UserContext } from '../UserContext'
 
 export default function Navbar() {
 
-const {setUserInfo, userInfo} = useContext(UserContext);
-const [username, setUsername] = useState(null);
-
+  const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
     fetch('http://localhost:4000/profile', {
       credentials: 'include',
-    }).then(res => {
-      res.json().then(userInfo => {
-        setUsername(userInfo?.username);
-      })
-    })
-  })
+    }).then(response => {
+      response.json().then(userInfo => {
+        setUserInfo(userInfo);
+      });
+    });
+  }, []);
 
   function logout() {
     fetch('http://localhost:4000/logout', {
@@ -33,7 +31,7 @@ const [username, setUsername] = useState(null);
     setUserInfo(null);
   }
 
-  let clicked = 0;
+  const username = userInfo?.username;
 
   function cookieAnimation(){
 
