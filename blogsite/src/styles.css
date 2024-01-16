@@ -1,6 +1,5 @@
 html, body{
     width: 100%;
-    height: 3000px;
     margin: 0;
 }
 
@@ -21,6 +20,10 @@ h2, h3 {
 h1, h2, h3 {
     font-family: "Zilla Slab", sans-serif;
     color:#222;
+}
+
+#sideH1 {
+    font-size: 26px;
 }
 
 p {
@@ -162,7 +165,7 @@ p {
     margin-right: 40px;
 }
 
-.navbarRightFlex > div {
+.navbarRightFlex > a{
     display: flex;
     text-align: center;
     justify-content: center;
@@ -170,11 +173,11 @@ p {
     height: 60px;
 }
 
-.navbarRightFlex > div > a {
-    margin: 0 20px;
+.navbarRightFlex > a {
+    padding: 0 20px;
 }
 
-.navbarRightFlex > div:hover {
+.navbarRightFlex > a:hover {
     cursor: pointer;
     background-color: #383838;
 }
@@ -323,8 +326,51 @@ p {
 
 /* ARTICLES */
 
+.underlineAnimation {
+    width: 100%;
+    animation: underline 0.5s 1 ease-in-out;
+}
+
+@keyframes underline {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.formBottomMini {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #222;
+    transition: width 0.5s;
+}
+
+#inline {
+    display: inline-flexbox;
+}
+
+#inline > div > a > p {
+    font-weight: 400;
+    font-family: "Zilla Slab", sans-serif;
+}
+
+#inline > div > p {
+    font-weight: 400;
+    font-family: "Zilla Slab", sans-serif;
+}
+
+#inline > div {
+    margin: 0 150px;
+    cursor: pointer;
+}
+
+#inline > h1 {
+    font-size: 26px;
+}
+
 .defaultGrid {
-    height: fit-content;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -350,13 +396,28 @@ p {
     object-fit: contain;
 }
 
+#side {
+    margin-left: 20px;
+}
+
+.sideTop {
+    cursor: pointer;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-bottom-color: #e0e0e0;
+}
+
+#sideBottom{
+    cursor: pointer;
+    margin-top: 1px;
+}
+
 .defaultGridLeftSmall {
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: left;
     width: 275px;
-    padding-left: 40px;
     object-fit: contain; 
 }
 
@@ -390,16 +451,20 @@ p {
     font-size: 10px;
 }
 
-.defaultGridLeftSmall {
-    margin: 0 5px;
-}
-
 .defaultGridLeftSmall > h1 {
     margin-bottom: 8px;
-    font-size: 15px;
+    font-size: 18px;
     font-family: "Zilla Slab", sans-serif;
     font-weight: 500;
     color:#222;
+}
+
+.defaultGridLeftSmall > p {
+    font-family: "Zilla Slab", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color:#222;
+    margin-top: 0;
 }
 
 .defaultGridLeftSmall > h4 {
@@ -434,6 +499,18 @@ p {
     font-weight: 300;
 }
 
+.sideBottomFonts > h1 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sideBottomFonts > h4 {
+    font-size: 10px;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    margin-top: 0;
+}
+
 .pageBorder {
     width: 1px;
     margin-top: 100px;
@@ -452,7 +529,6 @@ p {
 }
 
 .defaultFlex {
-    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -464,6 +540,30 @@ p {
     justify-content: left;
     align-items: left;
     text-align: center;
+}
+
+.defaultFlexRight {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    text-align: center;
+}
+
+#limitSize350 {
+    width: 350px;
+}
+
+#limitSize170 {
+    width: 170px;
+}
+
+#lineBottom {
+    border-bottom-color: #686868;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+}
+
+.lineBottom {
     border-bottom-color: #686868;
     border-bottom-width: 1px;
     border-bottom-style: dashed;
@@ -481,6 +581,11 @@ p {
     font-family: "Zilla Slab", sans-serif;
     font-weight: 500;
     margin-bottom: 5px;
+}
+
+.defaultFlexLeft > h1 {
+    font-size: 30px;
+    letter-spacing: 1px;
 }
 
 #botFlex {
@@ -544,16 +649,61 @@ p {
 #image {
     height: 400px;
     margin-left: 20px;
+    object-fit: cover;
 }
 
 #sideImage {
     margin-left: 30px;
+    padding-right: 20px;
     height: 400px;
+    object-fit: cover;
 }
 
 #sideImageSmall{
-    width: 175px;
-    height: 100px;
+    margin-top: 20px;
+    width: 240px;
+    height: 140px;
+    object-fit: cover;
+}
+
+#imageH1 {
+    font-size: 18px;
+    width: 240px;
+}
+
+#imageH4 {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+}
+
+#sideTopFontH1 {
+    font-size: 20px;
+}
+
+#sideTopFontP {
+    font-size: 14px;
+}
+
+#sideTopFontH4 {
+    font-size: 10px;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+}
+
+#marginTop20 {
+    margin-top: 20px;
+}
+
+.scaler {
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.scaler:hover {
+    transition: transform 0.2s, background-color 0.2s;
+    transform: scale(1.025);
+    background-color:#f7f7f7;
 }
 
 #side {
@@ -621,8 +771,12 @@ a {
     color: #f8f8f8;
 }
 
+form > p {
+    margin-bottom: 5px;
+}
+
 form.login, form.register {
-    max-width: 400px;
+    width: 500px;
     margin: 0 auto;
 }
 
@@ -630,22 +784,63 @@ input {
     display: block;
     margin-bottom: 5px;
     width: 100%;
-    padding: 5px 7px;
+    padding: 10px 7px;
     border: 2px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
 }
 
-button {
-    width: 100%;
+form > p {
+    font-weight: 500;
+    font-family: "Zilla Slab", sans-serif;
+}
+
+form > div > button {
+    margin-top: 20px;
+    width: 90%;
     display: block;
-    background-color: #555;
+    background-color: transparent;
     border: 0;
-    color: #fff;
+    color: #000000;
     border-radius: 5px;
+    border-style: solid;
+    border-color: #222;
+    border-width: 1px;
     padding: 7px 0;
+    transition: width 0.5s;
+}
+
+.formBottom {
+    margin: 0 5px;
+    width: 25%;
+    height: 1px;
+    background-color: #222;
+    animation: growFormBottom 2s 1 ease-in-out;
+}
+
+@keyframes growFormBottom {
+    0%{
+        width: 0%
+    }
+    100%{
+        width: 25%;
+    }
+}
+
+form > div > button:hover {
+    transition: width 0.5s;
+    width: 100%;
+    cursor: pointer;
 }
 
 form.login h1, form.register h1 {
     text-align: center;
+}
+
+/* STUFF */
+
+#mainBorder {
+    border-right-color: #686868;
+    border-right-width: 1px;
+    border-right-style: dashed;
 }

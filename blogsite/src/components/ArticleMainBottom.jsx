@@ -1,7 +1,7 @@
 function ArticleBottom({title}){
 
     return (
-      <section className={"defaultGridLeftSmall" + " " + "borderRight"}>
+      <section className={"defaultGridLeftSmall" + " " + "borderRight" + " " + "scaler"}>
         <div>
             <div>
             <p>{title}</p>

@@ -11,9 +11,7 @@ function TagsNav() {
             </div>
             <div>
                 <p>Cooking</p>
-            </div>
-            <div id="searchDiv" className="searchDiv">           
-            </div>
+            </div>          
             <div>
                 <p>Politics</p>
             </div>

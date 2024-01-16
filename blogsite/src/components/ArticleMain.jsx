@@ -1,7 +1,7 @@
 function ArticleMain({title, description}){
 
     return (
-      <section className="borderBottom">
+      <section className={"borderBottom" + " " + "scaler"}>
           <h1>{title}</h1>
           <p>{description}</p>
           <h4>By Kamil Wisniewski</h4>

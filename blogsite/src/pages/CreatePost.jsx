@@ -56,8 +56,10 @@ export default function CreatePost(){
     return (
         <><div className="defaultFlex">
                 <button onClick={() => setTopic("programming")}>Programming</button>
-                <button onClick={() => setTopic("mental_health")}>Mental Health</button>
+                <button onClick={() => setTopic("mentalHealth")}>Mental Health</button>
                 <button onClick={() => setTopic('cooking')}>Cooking</button>
+                <button onClick={() => setTopic('education')}>Education</button>
+                <button onClick={() => setTopic('sports')}>Sports</button>
             </div>
             <form onSubmit={createNewPost}>
                 <input type="title" 

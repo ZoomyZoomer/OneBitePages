@@ -78,12 +78,16 @@ export default function Navbar() {
             )}
             {!username && (
               <>
-                <div>
-                  <Link id="register" to="/register">Register</Link>
-                </div>
-                <div>
-                  <Link id="login" to="/login">Login</Link>
-                </div>
+               <Link id="register" to="/register">
+                  <div>
+                    Register
+                  </div>
+                </Link>
+                <Link id="login" to="/login">
+                  <div>
+                    Login
+                  </div>
+                </Link>
               </>
             )}
             

@@ -30,7 +30,7 @@ function ArticleBottom(props){
   
 }
 
-function Articles({title, description, createdAt}) {
+function Articles({title, description}) {
 
   return (
     <section className="defaultGrid">

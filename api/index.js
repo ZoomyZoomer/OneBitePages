@@ -14,7 +14,7 @@ const fs = require('fs');
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 
-app.use(cors({credentials:true, origin:'http://localhost:5174'}));
+app.use(cors({credentials:true, origin:'http://localhost:5173'}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -104,6 +104,54 @@ app.get('/programming', async (req, res) => {
         console.log(e);
         res.json({});
     };
+});
+
+app.get('/mentalHealth', async (req, res) => {
+  try {
+      const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
+      .sort({ createdAt: -1 })
+      .limit(3);
+      res.json(mentalHealthDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
+app.get('/cooking', async (req, res) => {
+  try {
+      const cookingDoc = await Post.find({ topic: "cooking" })
+      .sort({ createdAt: -1 })
+      .limit(5);
+      res.json(cookingDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
+app.get('/education', async (req, res) => {
+  try {
+      const educationDoc = await Post.find({ topic: "education" })
+      .sort({ createdAt: -1 })
+      .limit(6);
+      res.json(educationDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
+app.get('/sports', async (req, res) => {
+  try {
+      const sportsDoc = await Post.find({ topic: "sports" })
+      .sort({ createdAt: -1 })
+      .limit(3);
+      res.json(sportsDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
 });
 
 app.listen(4000);
