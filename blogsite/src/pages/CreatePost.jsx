@@ -34,12 +34,14 @@ export default function CreatePost(){
         data.set('title', title);
         data.set('description', description);
         data.set('content', content);
-        data.set('topic', topic)
+        data.set('topic', topic);
         data.set('file', files[0]);
+            
         e.preventDefault();
         const response = await fetch("http://localhost:4000/post", {
             method: 'POST',
             body: data,
+            credentials: 'include',
         });
 
         if (response.status === 200){

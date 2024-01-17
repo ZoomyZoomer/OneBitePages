@@ -38,7 +38,7 @@ export default function RegisterPage(){
     }
 
     return (  
-        <>
+        <div className="footerPadding">
             <form className="register" onSubmit={register}>
                 <div className="defaultFlex">
                     <h1>Register</h1>
@@ -77,6 +77,6 @@ export default function RegisterPage(){
                     </div>  
                         
                 </div>
-        </>
+        </div>
     )
 }

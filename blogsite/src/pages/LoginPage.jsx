@@ -49,7 +49,7 @@ export default function LoginPage() {
     }
 
     return (  
-        <>
+        <div className="footerPadding">
          <form className="login" onSubmit={login}>
                 <div className="defaultFlex">
                     <h1>Login</h1>
@@ -87,6 +87,6 @@ export default function LoginPage() {
                 </div>
             </div>   
         </div>
-    </>
+    </div>
     )
 }

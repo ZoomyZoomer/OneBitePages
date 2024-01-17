@@ -66,8 +66,6 @@ app.post('/register', async (req,res) => {
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
-    const {title, description, content, topic} = req.body;
-
     try {
         const {originalname, path} = req.file;
         const parts = originalname.split('.');
@@ -75,14 +73,21 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
         const newPath = path+'.'+ext;
         fs.renameSync(path, newPath);
         
-        const postDoc = await Post.create({
+        const {token} = req.cookies;
+        jwt.verify(token, secret, {}, async (err,info) => {
+          if (err) throw err;
+          const {title, description, content, topic} = req.body;
+          const postDoc = await Post.create({
             title,
             description,
             content,
             topic,
             img: newPath,
+            author: info.id,
         });
         res.json(postDoc);
+        });
+        
     } catch (e) {
         res.status(400).json(e);
     }
@@ -91,7 +96,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 app.get('/post', async (req, res) => {
-    res.json(await Post.find());
+    res.json(await Post.find().populate('author', ['username']));
 })
 
 app.get('/programming', async (req, res) => {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 import MainHeader from "../components/MainHeader";
 import TagsNav from "../components/TagsNav";
 import ArticleMain from "../components/ArticleMain";
@@ -115,7 +116,7 @@ function SubArticleSet() {
   useEffect(() => {
     fetch('http://localhost:4000/sports').then(response => {
       response.json().then(posts => {
-        setProgrammingPosts(posts);
+        setSportsPosts(posts);
       });
     });
   }, []);
@@ -126,6 +127,7 @@ function SubArticleSet() {
   const remainingSportsPosts = sportsPosts.slice(1);
 
   return (
+    <>
     <div className="defaultFlex">
         <div id="mainBorder" className="defaultGrid">
           <div id="lineBottom" className="defaultFlexLeft">
@@ -170,24 +172,27 @@ function SubArticleSet() {
           </div>
         </div>
       </div>
+    </>
   )
 
 }
 
-function ImageArticle({title, img}){
+function ImageArticle({_id, title, img}){
 
   return(
-    <div id="marginTop20" className={"defaultGridLeftSmall" + " " + "borderRight"}>
-      <div className="scaler">
-        <div className="defaultFlexLeft">
-          <img id="sideImageSmall" src={img.replace("..\\blogsite\\public\\", "")}></img>
-        </div>
-          <h1 id="imageH1">{title}</h1>
-        <div className="defaultFlexLeft">
-          <h4 id="imageH4">By Kamil Wisniewski</h4>
+    <Link to={`/post/${_id}`}>
+      <div id="marginTop20" className={"defaultGridLeftSmall" + " " + "borderRight"}>
+        <div className="scaler">
+          <div className="defaultFlexLeft">
+            <img id="sideImageSmall" src={img.replace("..\\blogsite\\public\\", "")}></img>
+          </div>
+            <h1 id="imageH1">{title}</h1>
+          <div className="defaultFlexLeft">
+            <h4 id="imageH4">By Kamil Wisniewski</h4>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 
 }
