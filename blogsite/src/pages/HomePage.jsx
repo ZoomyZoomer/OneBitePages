@@ -52,6 +52,7 @@ function MainArticleSet() {
           <div id="marginTop20" className="defaultFlex">
             <div className="defaultGridLeft">
               {firstThreeProgrammingPosts.length > 0 && firstThreeProgrammingPosts.map(post => (
+                console.log(post),
                 <ArticleMain key={post.id} {...post} />
               ))}
             </div>

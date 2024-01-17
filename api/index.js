@@ -102,6 +102,7 @@ app.get('/post', async (req, res) => {
 app.get('/programming', async (req, res) => {
     try {
         const programmingDoc = await Post.find({ topic: "programming" })
+        .populate('author', ['username'])
         .sort({ createdAt: -1 })
         .limit(6);
         res.json(programmingDoc);
@@ -114,6 +115,7 @@ app.get('/programming', async (req, res) => {
 app.get('/mentalHealth', async (req, res) => {
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
+      .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(3);
       res.json(mentalHealthDoc);
@@ -126,6 +128,7 @@ app.get('/mentalHealth', async (req, res) => {
 app.get('/cooking', async (req, res) => {
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
+      .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(5);
       res.json(cookingDoc);
@@ -138,6 +141,7 @@ app.get('/cooking', async (req, res) => {
 app.get('/education', async (req, res) => {
   try {
       const educationDoc = await Post.find({ topic: "education" })
+      .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(6);
       res.json(educationDoc);
@@ -150,6 +154,7 @@ app.get('/education', async (req, res) => {
 app.get('/sports', async (req, res) => {
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
+      .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(3);
       res.json(sportsDoc);
