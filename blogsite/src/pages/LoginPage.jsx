@@ -49,7 +49,7 @@ export default function LoginPage() {
     }
 
     return (  
-        <div className="footerPadding">
+        <div className="formMargin">
          <form className="login" onSubmit={login}>
                 <div className="defaultFlex">
                     <h1>Login</h1>

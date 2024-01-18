@@ -1,5 +1,6 @@
 html, body{
     width: 100%;
+    height: 3000px;
     scroll-behavior: smooth;
     margin: 0;
 }
@@ -35,11 +36,38 @@ p {
 
 /* NAVBAR */
 
+#textRegister, #textLogin, #textLogout {
+    color: #222;
+    font-weight: 400;
+    font-family: "Zilla Slab", sans-serif;
+}
+
+#introMainText {
+    font-size: 46px;
+    font-family: "Zilla Slab", sans-serif;
+    color: #222;
+}
+
+#textLogo {
+    font-weight: 400;
+    font-family: "Zilla Slab", sans-serif;
+    font-size: 26px;
+}
+
 .navbarMainFlex {
+    position: fixed;
+    z-index: 1000;
     height: 60px;
     width: 100%;
-    background-color: #222;
+    background-color: #c8f0f5;
     font-size: 18px;
+    border-bottom-color: #222;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.navbar2 {
+    background-color: red;
 }
 
 .navbarMainFlex, .navbarLeftFlex, .navbarRightFlex{
@@ -168,7 +196,22 @@ p {
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    height: 59px;
+}
+
+.leftDashAnimation {
+    animation: leftDash 2s 1 ease-in-out;
+}
+
+@keyframes leftDash {
+    0%{
+        right: -20%;
+        opacity: 0;
+    }
+    100%{
+        right: 10%;
+        opacity: 1;
+    }
 }
 
 .navbarRightFlex > a {
@@ -177,25 +220,72 @@ p {
 
 .navbarRightFlex > a:hover {
     cursor: pointer;
-    background-color: #383838;
+    background-color: #c4eaee;
 }
 
 /* MAINHEADER */
 
+html:not([data-scroll='0']) .navbarMainFlex {
+    background-color: white;
+    transition: background-color .5s;
+}
+
+html:not([data-scroll='0']) .navbarRightFlex > a:hover {
+    background-color: rgb(245, 245, 245);
+    transition: background-color .5s;
+}
+
+[data-scroll='0'] .navbarMainFlex {
+    background-color: #c8f0f5;
+    transition: background-color .5s;
+}
+
 .mainHeaderWrap{
-    margin-top: 50px;
+    position: relative;
+    background-color: #c8f0f5;
+    padding-top: 50px;
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 450px;
+    height: 525px;
     width: 100%;
     border-bottom-color: #222;
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
 
-.mainHeaderWrap > div > p {
+
+.absoluteButton {
+    position: absolute;
+    right: 10%;
+    top: 18%;
+}
+
+.absoluteButton > div > div > button {
+    width: 50%;
+    padding: 10px 15px;
+    background-color: transparent;
+    font-size: 20px;
+    border-color: #222;
+    border-width: 1px;
+    border-style: solid;
+    transition: background-color 0.3s;
+}
+
+.absoluteButton > div > div > button:hover {
+    background-color: #aad1d6;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+#introText {
+    font-weight: 300;
+    font-size: 26px;
+    width: 400px;
+}
+
+.mainHeaderWrap > div > div > div > p {
     font-family: "Zilla Slab", sans-serif;
     font-weight: 500;
     font-size: 36px;
@@ -312,7 +402,7 @@ p {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: -80px;
+    margin-top: -30px;
     font-size: 12px;
 }
 
@@ -322,6 +412,21 @@ p {
     margin-top: -50px;
 }
 
+#cookieDecision > p {
+    margin-top: -60px;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+#cookieDecision > button {
+    margin-top: -20px;
+    background-color: transparent;
+    border-color: #222;
+    border-radius: 1px;
+    border-style: solid;
+    padding: 8px 12px;
+    font-size: 20px;
+}
 /* ARTICLES */
 
 .underlineAnimation {
@@ -383,6 +488,15 @@ p {
     text-align: left;
     width: 350px;
     object-fit: contain;
+}
+
+.defaultGridLeftNoRes {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: lcenter;
+    object-fit: contain;
+    width: auto;
 }
 
 .defaultGridLeftImage {
@@ -537,7 +651,7 @@ p {
     display: flex;
     justify-content: left;
     align-items: left;
-    text-align: center;
+    text-align: left;
 }
 
 .defaultFlexRight {
@@ -710,6 +824,11 @@ p {
 }
 
 /* TAGS NAV */
+
+.tagFlex {
+    display: flex;
+    height: 80px;
+}
 
 .tagsGrid {
     width: 100%;
@@ -1061,4 +1180,229 @@ form.login h1, form.register h1 {
     background-color: rgb(219, 219, 219);
     color: #222;
     cursor: pointer;
+}
+
+.formMargin {
+    padding-top: 100px;
+}
+
+/* TRENDS */
+
+.trendsGrid {
+
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+}
+
+#topicButtons {
+    padding-top: 150px;
+}
+
+#trendRelative {
+    position: relative;
+}
+
+#topTrending {
+    margin-bottom: -100px;
+    margin-left: 20px;
+}
+
+#trendingIcon {
+    margin-top: 19px;
+}
+
+#trendContainer {
+    margin-bottom: -50px;
+    margin-left: 50px;
+}
+
+.dashBoxes {
+    position: absolute;
+    width: 390px;
+    background-color: #222;
+    height: 1px;
+    left: 0;
+    bottom: -20px;
+    animation: dash1 1s 1 ease-in-out;
+}
+
+@keyframes dash1 {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 390px;
+    }
+}
+
+.dashBoxes2 {
+    position: absolute;
+    width: 390px;
+    background-color: #222;
+    height: 1px;
+    right: 0;
+    bottom: -20px;
+    animation: dash2 1s 1 ease-in-out;
+}
+
+@keyframes dash2 {
+    0%{
+        width: 0px
+    }
+    100%{
+        width: 390px;
+    }
+}
+
+.dashBoxes3 {
+    position: absolute;
+    width: 340px;
+    background-color: #222;
+    height: 1px;
+    left: 220px;
+    top: 137px;
+    transform: rotate(90deg);
+    animation: dash3 1s 1 ease-in-out;
+}
+
+@keyframes dash3 {
+    0%{
+        width: 0;
+        left: 220px;
+        top: 137px;
+        transform: rotate(90deg);
+    }
+    100%{
+        width: 340px;
+        left: 220px;
+        top: 137px;
+        transform: rotate(90deg);
+    }
+}
+
+.dashBoxes4 {
+    position: absolute;
+    width: 340px;
+    background-color: #222;
+    height: 1px;
+    right: 220px;
+    top: 137px;
+    transform: rotate(90deg);
+    animation: dash4 1s 1 ease-in-out;
+}
+
+@keyframes dash4 {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 340px;
+    }
+}
+
+.dashBoxes5 {
+    position: absolute;
+    width: 421px;
+    background-color: #222;
+    height: 1px;
+    left: 390px;
+    top: -33px;
+    animation: dash5 1s 1 ease-in-out;
+}
+
+@keyframes dash5 {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 421;
+    }
+}
+
+.trendingBorder {
+    margin-top: 50px;
+    width: 80%;
+    height: 1px;
+    background-color: #d1d1d1;
+}
+
+.trendy {
+    transform: scale(.85);
+    width: 400px;
+}
+
+#articleTrend {
+    width: 300px;
+}
+
+#pfpImg {
+    margin-left: -5px;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+}
+
+#trendUser {
+    font-size: 16px;
+}
+
+#trendTitle {
+    margin-top: -5px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Lato", sans-serif;
+}
+
+#trendTime {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgb(139, 139, 139);
+}
+
+section > h1 {
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-family: "Zilla Slab", sans-serif;
+    font-weight: 500;
+    color:#222;
+}
+
+section > p {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    color:#222;
+    font-size: 15px;
+    margin: 0;
+    line-height: 15px;
+}
+
+section > div > h4 {
+    margin-top: 5px;
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.tagline {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 9999px;
+    height: 20px;
+    background-color: #e0e0e0;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 3px;
+    margin: 0 5px;
+    margin-top: 3px;
+    font-weight: 400;
 }

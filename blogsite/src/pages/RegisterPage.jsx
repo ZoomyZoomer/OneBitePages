@@ -38,7 +38,7 @@ export default function RegisterPage(){
     }
 
     return (  
-        <div className="footerPadding">
+        <div className="formMargin">
             <form className="register" onSubmit={register}>
                 <div className="defaultFlex">
                     <h1>Register</h1>

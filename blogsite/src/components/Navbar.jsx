@@ -63,36 +63,44 @@ export default function Navbar() {
     
   }
 
+  const storeScroll = () => {
+    document.documentElement.dataset.scroll = window.scrollY;
+};
+
+  document.addEventListener('scroll', storeScroll);
+
+  storeScroll();
+
   return (
-    <section className="navbarMainFlex">
+    <section id="navbarMainFlex" className="navbarMainFlex">
         <div className='navbarLeftFlex'>
             <div className="cookieHolder" onClick={() => cookieAnimation()}>
-              <FontAwesomeIcon id="cookie" icon={faCookieBite} color="#f8f8f8" size="xl"/>
-              <FontAwesomeIcon id="fullcookie" icon={faCookie} color="#f8f8f8" size="xl"/>
+              <FontAwesomeIcon id="cookie" icon={faCookieBite} color="#222" size="xl"/>
+              <FontAwesomeIcon id="fullcookie" icon={faCookie} color="#222" size="xl"/>
             </div>
-            <Link to="/">OneBitePages</Link>
+            <Link to="/"><p id="textLogo">OneBitePages</p></Link>
             
         </div>
         <div className="navbarRightFlex">
           {username && (
             <>
               <Link to="/create" className="pencilHolder">
-                <FontAwesomeIcon id="pencil" icon={faPencil} color="#f8f8f8" size="xl"/>
-                <FontAwesomeIcon id="plus" icon={faPlus} color="#f8f8f8" size="sm"/>
+                <FontAwesomeIcon id="pencil" icon={faPencil} color="#222" size="xl"/>
+                <FontAwesomeIcon id="plus" icon={faPlus} color="#222" size="sm"/>
               </Link>
-              <a onClick={logout}>Logout</a>
+              <a id="textLogout" onClick={logout}>Logout</a>
             </>
             )}
             {!username && (
               <>
                <Link id="register" to="/register">
                   <div>
-                    Register
+                    <p id="textRegister">Register</p>
                   </div>
                 </Link>
                 <Link id="login" to="/login">
                   <div>
-                    Login
+                    <p id="textLogin">Login</p>
                   </div>
                 </Link>
               </>

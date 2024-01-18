@@ -56,7 +56,7 @@ export default function CreatePost(){
     }
 
     return (
-        <><div className="defaultFlex">
+        <><div id="topicButtons" className="defaultFlex">
                 <button onClick={() => setTopic("programming")}>Programming</button>
                 <button onClick={() => setTopic("mentalHealth")}>Mental Health</button>
                 <button onClick={() => setTopic('cooking')}>Cooking</button>

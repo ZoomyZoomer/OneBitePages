@@ -96,7 +96,12 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 app.get('/post', async (req, res) => {
+  try {
     res.json(await Post.find().populate('author', ['username']));
+  } catch(e) {
+    console.log(e);
+    res.json({});
+  }
 })
 
 app.get('/programming', async (req, res) => {
@@ -104,7 +109,7 @@ app.get('/programming', async (req, res) => {
         const programmingDoc = await Post.find({ topic: "programming" })
         .populate('author', ['username'])
         .sort({ createdAt: -1 })
-        .limit(6);
+        .limit(2);
         res.json(programmingDoc);
     } catch (e) {
         console.log(e);
@@ -130,7 +135,7 @@ app.get('/cooking', async (req, res) => {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
-      .limit(5);
+      .limit(2);
       res.json(cookingDoc);
   } catch (e) {
       console.log(e);
@@ -143,7 +148,7 @@ app.get('/education', async (req, res) => {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
-      .limit(6);
+      .limit(2);
       res.json(educationDoc);
   } catch (e) {
       console.log(e);

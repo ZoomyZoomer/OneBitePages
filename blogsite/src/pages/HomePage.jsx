@@ -8,6 +8,7 @@ import SideArticlesTop from '../components/sideArticlesTop';
 import SideArticlesBottom from '../components/SideArticlesBottom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function MainArticleSet() {
   const [posts, setPosts] = useState([]);
@@ -225,15 +226,130 @@ function ImageArticleSet(){
 
 }
 
+function Trends() {
+
+  const [posts, setPosts] = useState([]);
+  const [programmingPosts, setProgrammingPosts] = useState([]);
+  const [educationPosts, setEducationPosts] = useState([]);
+  const [cookingPosts, setCookingPosts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/post').then(response => {
+      response.json().then(posts => {
+        setPosts(posts);
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/programming').then(response => {
+      response.json().then(posts => {
+        setProgrammingPosts(posts);
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/education').then(response => {
+      response.json().then(posts => {
+        setEducationPosts(posts);
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/cooking').then(response => {
+      response.json().then(posts => {
+        setCookingPosts(posts);
+      });
+    });
+  }, []);
+
+  return (
+    <>
+    <div className="defaultGrid">
+      <div id="trendContainer" className="defaultFlexLeft">
+      <FontAwesomeIcon id="trendingIcon" icon={faArrowTrendUp} />
+        <p id="topTrending">Trending</p>
+      </div>
+      <div id="trendRelative" className="trendsGrid">
+        {programmingPosts.length > 1 && educationPosts.length > 1 && cookingPosts.length > 1 && (
+          <>
+            <ArticleTrend {...programmingPosts[0]}/>
+            <ArticleTrend {...educationPosts[0]}/>
+            <ArticleTrend {...cookingPosts[0]}/>
+            <ArticleTrend {...programmingPosts[1]}/>
+            <ArticleTrend {...educationPosts[1]}/>
+            <ArticleTrend {...cookingPosts[1]}/>
+            <div id="d1"/>
+            <div id="d2"/>
+            <div id="d3"/>
+            <div id="d4"/>
+            <div id="d5"/>
+          </>
+        )}
+      </div>
+      
+    </div>
+    <div id="triggerLines"/>
+    <div className="defaultFlex">
+      <div className="trendingBorder"/>
+    </div>
+    </>
+
+  )
+}
+
+function ArticleTrend({title, description, author, topic}){
+
+  return (
+    <div className="trendy">
+      <section className={"borderBottom" + " " + "scaler"}>
+              <h1>{title}</h1>
+              <p>{description}</p>
+              <div className="defaultFlexLeft">
+                <h4>By {author.username} &#183;</h4>
+                <div className="tagline">{topic}</div>
+              </div>
+      </section>
+    </div>
+  )
+
+}
+
+
 function HomePage() {
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.getElementById("d1").classList.add('dashBoxes');
+          document.getElementById("d2").classList.add('dashBoxes2');
+          document.getElementById("d3").classList.add('dashBoxes3');
+          document.getElementById("d4").classList.add('dashBoxes4');
+          document.getElementById("d5").classList.add('dashBoxes5');
+
+        }
+      });
+    });
+    
+    const element = document.getElementById("triggerLines");
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   
   return (
     <>
       <MainHeader />
       <TagsNav />
-      <MainArticleSet />
-      <ImageArticleSet />
-      <SubArticleSet />
+      <Trends />
+      
     </>
   );
 }
