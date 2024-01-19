@@ -1,6 +1,5 @@
 html, body{
     width: 100%;
-    height: 3000px;
     scroll-behavior: smooth;
     margin: 0;
 }
@@ -26,12 +25,17 @@ h1, h2, h3 {
 
 #sideH1 {
     font-size: 26px;
+    margin-top: -50px;
 }
 
 p {
     font-family: "Lato", sans-serif;
     color:#222;
     font-weight: 300;
+}
+
+#b2 {
+    margin-bottom: 4px;
 }
 
 /* NAVBAR */
@@ -454,6 +458,12 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
     display: inline-flexbox;
 }
 
+#line1 {
+    height: 100px;
+    color: #222;
+    width: 100%;
+}
+
 #inline > div > a > p {
     font-weight: 400;
     font-family: "Zilla Slab", sans-serif;
@@ -647,11 +657,96 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
     text-align: center; 
 }
 
+.defaultFlexPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    height: 300px;
+    width: 100%;
+}
+
+.whitebg {
+    background-color: white;
+}
+
+#postImage {
+    max-height: 300px;
+    max-width: 1000px;
+    object-fit: cover;
+}
+
+.defaultFlex2 {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    max-width: 1200px;
+    border-top-style: solid;
+    border-top-color:#e9e9e9;
+    border-top-width: 1px;
+}
+
+#widthRestr {
+    max-width: 500px;
+}
+
+.marginBottom {
+    margin-top: -20px;
+}
+
+#postH4 {
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+}
+
+h4 {
+    font-weight: 300;
+}
+
+.postWrapper {
+    padding-top: 200px;
+    height: 100%;
+}
+
 .defaultFlexLeft {
     display: flex;
     justify-content: left;
     align-items: left;
     text-align: left;
+}
+
+.defaultFlexLeft3 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+}
+
+a {
+    color: #222;
+}
+
+#likes {
+    margin: 0 5px;
+    margin-right: 8px;
+}
+
+#likeIcon {
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+#likeIcon:hover {
+    transition: color 0.2s, transform 0.2s;
+    color: #C8F0F5;
+    transform: scale(1.1);
+}
+
+#topScale {
+    transform: scale(1.1);
 }
 
 .defaultFlexRight {
@@ -662,17 +757,30 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
 }
 
 #limitSize350 {
-    width: 350px;
+    width: 400px;
+}
+
+#mdt {
+    margin-left: 110px;
+    margin-bottom: -50px;
 }
 
 #limitSize170 {
-    width: 170px;
+    width: 220px;
+    margin: 0 1px;
+}
+
+#borderBot {
+    margin-top: 10px;
+    height: 1px;
+    width: 100%;
+    background-color: #222;
 }
 
 #lineBottom {
     border-bottom-color: #686868;
     border-bottom-width: 1px;
-    border-bottom-style: dashed;
+    border-bottom-style: solid;
 }
 
 .lineBottom {
@@ -764,10 +872,52 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
     object-fit: cover;
 }
 
+.bottomBorder {
+    height: 1px;
+    width: 100%;
+    background-color: #222;
+    animation: drawLine 1.5s 1 ease-in-out;
+}
+
+@keyframes drawLine {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.sideBorder {
+    height: 550px;
+    width: 1px;
+    background-color: #222;
+    animation: drawSegment 1.5s 1 ease-in-out;
+}
+
+@keyframes drawSegment {
+    0%{
+        height: 0px
+    }
+    100%{
+        height: 550px;
+    }
+}
+
+#authorText {
+    color: #222;
+    margin-top: 0;
+}
+
+.goUp {
+    padding-top: 20px;
+}
+
 #sideImage {
     margin-left: 30px;
     padding-right: 20px;
-    max-width: 400px;
+    max-width: 600px;
+    max-height: 500px;
     object-fit: cover;
     cursor: pointer;
 }
@@ -799,10 +949,16 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
     font-size: 14px;
 }
 
+#scaled {
+    transform: scale(.9);
+}
+
 #sideTopFontH4 {
-    font-size: 10px;
+    font-size: 12px;
     font-family: "Lato", sans-serif;
     font-weight: 300;
+    color: #222;
+    margin-top: 2px;
 }
 
 #marginTop20 {
@@ -886,7 +1042,6 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
 
 a {
     text-decoration: none;
-    color: #f8f8f8;
 }
 
 form > p {
@@ -960,7 +1115,7 @@ form.login h1, form.register h1 {
 #mainBorder {
     border-right-color: #686868;
     border-right-width: 1px;
-    border-right-style: dashed;
+    border-right-style: solid;
 }
 
 .footer {
@@ -1010,6 +1165,15 @@ form.login h1, form.register h1 {
 
 #tm {
     margin-top: 10px;
+}
+
+#md {
+    margin-bottom: -50px;
+    margin-top: 40px;
+}
+
+#mt {
+    margin-top: -50px;
 }
 
 .socialsFlex > p {
@@ -1183,7 +1347,7 @@ form.login h1, form.register h1 {
 }
 
 .formMargin {
-    padding-top: 100px;
+    padding-top: 188px;
 }
 
 /* TRENDS */
@@ -1260,53 +1424,45 @@ form.login h1, form.register h1 {
 
 .dashBoxes3 {
     position: absolute;
-    width: 340px;
+    height: 340px;
     background-color: #222;
-    height: 1px;
-    left: 220px;
-    top: 137px;
-    transform: rotate(90deg);
+    width: 1px;
+    left: 390px;
+    top: -32px;
     animation: dash3 1s 1 ease-in-out;
 }
 
 @keyframes dash3 {
     0%{
-        width: 0;
-        left: 220px;
-        top: 137px;
-        transform: rotate(90deg);
+        height: 0;
     }
     100%{
-        width: 340px;
-        left: 220px;
-        top: 137px;
-        transform: rotate(90deg);
+        height: 340px;
     }
 }
 
 .dashBoxes4 {
     position: absolute;
-    width: 340px;
+    height: 340px;
     background-color: #222;
-    height: 1px;
-    right: 220px;
-    top: 137px;
-    transform: rotate(90deg);
+    width: 1px;
+    right: 390px;
+    top: -32px;
     animation: dash4 1s 1 ease-in-out;
 }
 
 @keyframes dash4 {
     0%{
-        width: 0;
+        height: 0;
     }
     100%{
-        width: 340px;
+        height: 340px;
     }
 }
 
 .dashBoxes5 {
     position: absolute;
-    width: 421px;
+    width: 420px;
     background-color: #222;
     height: 1px;
     left: 390px;
@@ -1401,8 +1557,8 @@ section > div > h4 {
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 5px;
-    padding-top: 3px;
+    padding-top: 5px;
     margin: 0 5px;
-    margin-top: 3px;
+    margin-top: 2px;
     font-weight: 400;
 }

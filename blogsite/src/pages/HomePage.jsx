@@ -7,8 +7,8 @@ import ArticleMainBottom from "../components/ArticleMainBottom";
 import SideArticlesTop from '../components/sideArticlesTop';
 import SideArticlesBottom from '../components/SideArticlesBottom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../components/Footer';
 
 function MainArticleSet() {
   const [posts, setPosts] = useState([]);
@@ -24,7 +24,7 @@ function MainArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/programming').then(response => {
+    fetch('http://localhost:4000/programming2').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });
@@ -45,51 +45,55 @@ function MainArticleSet() {
   const remainingMentalHealthPosts = mentalHealthPosts.slice(1);
 
   return (
-    <div className="defaultFlex">
-        <div id="mainBorder" className="defaultGrid">
-          <div id="lineBottom" className="defaultFlexLeft">
-            <h1>Programming</h1>
-          </div>
-          <div id="marginTop20" className="defaultFlex">
-            <div className="defaultGridLeft">
-              {firstThreeProgrammingPosts.length > 0 && firstThreeProgrammingPosts.map(post => (
-                console.log(post),
-                <ArticleMain key={post.id} {...post} />
-              ))}
+    <>
+      <div className="defaultFlex">
+          <div id="triggerMain1" className="defaultGrid">
+            <div className="defaultFlexLeft">
+              <h1>Programming</h1>
             </div>
-            <div>
-              {firstThreeProgrammingPosts.length > 0 && (
-                <img id="sideImage" src={firstThreeProgrammingPosts[0].img.replace("..\\blogsite\\public\\", "")} alt="Side Image" />
-              )}
-            </div>
-          </div>
-          <div id="botFlex" className="defaultFlex">
-            {remainingProgrammingPosts.length > 0 && remainingProgrammingPosts.map(post => (
-              <ArticleMainBottom key={post.id} {...post} />
-            ))}
-          </div>
-        </div>
-        <div id="side" className="defaultGrid">
-        <div id="lineBottom" className="defaultFlexLeft">
-            <h1 id="sideH1">Mental Health</h1>
-          </div>
-          <div id="limitSize350" className={"defaultGridLeftSmall" + " " + "sideTop" + " " + "scaler"}>
-              <div className="defaultFlex">
-                {firstMentalHealthPost.length > 0 && (
-                  <img id="sideImageSmall" src={firstMentalHealthPost[0].img.replace("..\\blogsite\\public\\", "")} />
+            <div id="b1" className={"defaultFlexLeft"}/>
+            <div id="marginTop20" className="defaultFlex">
+              <div className="defaultGridLeft">
+                {firstThreeProgrammingPosts.length > 0 && firstThreeProgrammingPosts.map(post => (
+                  console.log(post),
+                  <ArticleMain key={post.id} {...post} />
+                ))}
+              </div>
+              <div>
+                {firstThreeProgrammingPosts.length > 0 && (
+                  <img id="sideImage" src={firstThreeProgrammingPosts[0].img.replace("..\\blogsite\\public\\", "")} alt="Side Image" />
                 )}
               </div>
-              {firstMentalHealthPost.length > 0 && firstMentalHealthPost.map(post => (
-                  <SideArticlesTop key={post.id} {...post} />
+            </div>
+            <div id="botFlex" className="defaultFlex">
+              {remainingProgrammingPosts.length > 0 && remainingProgrammingPosts.map(post => (
+                <ArticleMainBottom key={post.id} {...post} />
               ))}
+            </div>
           </div>
-          <div id="sideBottom" className="defaultFlex">
-              {remainingMentalHealthPosts.length > 0 && remainingMentalHealthPosts.map(post => (
-                  <SideArticlesBottom key={post.id} {...post} />
-              ))}
+          <div id="sb1" className="sideBorder"/>
+          <div id="side" className="defaultGrid">
+          <div id="b2" className="defaultFlexLeft">
+              <h1 id="sideH1">Mental Health</h1>
+            </div>
+            <div id="limitSize350" className={"defaultGridLeftSmall" + " " + "sideTop" + " " + "scaler"}>
+                <div className="defaultFlexLeft">
+                  {firstMentalHealthPost.length > 0 && (
+                    <img id="sideImageSmall" src={firstMentalHealthPost[0].img.replace("..\\blogsite\\public\\", "")} />
+                  )}
+                </div>
+                {firstMentalHealthPost.length > 0 && firstMentalHealthPost.map(post => (
+                    <SideArticlesTop key={post.id} {...post} />
+                ))}
+            </div>
+            <div id="sideBottom" className="defaultFlex">
+                {remainingMentalHealthPosts.length > 0 && remainingMentalHealthPosts.map(post => (
+                    <SideArticlesBottom key={post.id} {...post} />
+                ))}
+            </div>
           </div>
         </div>
-      </div>
+      </>
   )
 
 }
@@ -108,7 +112,7 @@ function SubArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/education').then(response => {
+    fetch('http://localhost:4000/education2').then(response => {
       response.json().then(posts => {
         setEducationPosts(posts);
       });
@@ -158,7 +162,7 @@ function SubArticleSet() {
             <h1 id="sideH1">Sports</h1>
           </div>
           <div id="limitSize350" className={"defaultGridLeftSmall" + " " + "sideTop" + " " + "scaler"}>
-              <div className="defaultFlex">
+              <div className="defaultFlexLeft">
                 {firstSportsPost.length > 0 && (
                   <img id="sideImageSmall" src={firstSportsPost[0].img.replace("..\\blogsite\\public\\", "")} />
                 )}
@@ -179,7 +183,7 @@ function SubArticleSet() {
 
 }
 
-function ImageArticle({_id, title, img}){
+function ImageArticle({_id, title, img, author, topic}){
 
   return(
     <Link to={`/post/${_id}`}>
@@ -190,7 +194,10 @@ function ImageArticle({_id, title, img}){
           </div>
             <h1 id="imageH1">{title}</h1>
           <div className="defaultFlexLeft">
-            <h4 id="imageH4">By Kamil Wisniewski</h4>
+            <h4 id="imageH4">By {author.username}</h4>
+            <div className="defaultFlex">
+            <div id="authorText" className="tagline">{topic}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -204,7 +211,7 @@ function ImageArticleSet(){
   const [cookingPosts, setCookingPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/cooking').then(response => {
+    fetch('http://localhost:4000/cooking2').then(response => {
       response.json().then(posts => {
         setCookingPosts(posts);
       });
@@ -221,6 +228,7 @@ function ImageArticleSet(){
             <ImageArticle key={post.id} {...post} />
       ))}
     </div>
+    <div id="borderBot"></div>
     </div>
   )
 
@@ -343,13 +351,45 @@ function HomePage() {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.getElementById("b1").classList.add('bottomBorder');
+          document.getElementById("b2").classList.add('bottomBorder');
+          document.getElementById("sb1").classList.add('sideBorder');
+        }
+      });
+    });
+    
+    const element = document.getElementById("triggerMain1");
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+}, []);
   
   return (
     <>
       <MainHeader />
       <TagsNav />
       <Trends />
-      
+      <div className="defaultGrid">
+        <div className="defaultFlexLeft">
+          <p id="mdt">Recent Posts</p>
+        </div>
+        <MainArticleSet />
+        <ImageArticleSet />
+        <SubArticleSet />
+      </div>
     </>
   );
 }

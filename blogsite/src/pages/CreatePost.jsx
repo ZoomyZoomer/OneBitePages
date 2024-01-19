@@ -35,6 +35,7 @@ export default function CreatePost(){
         data.set('description', description);
         data.set('content', content);
         data.set('topic', topic);
+        data.set('likes', 0);
         data.set('file', files[0]);
             
         e.preventDefault();

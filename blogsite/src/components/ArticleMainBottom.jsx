@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function ArticleBottom({_id, title}){
+function ArticleBottom({_id, title, topic, author}){
 
     return (
       <Link to={`/post/${_id}`}>
@@ -9,8 +9,9 @@ function ArticleBottom({_id, title}){
             <div>
             <p>{title}</p>
             </div>
-            <div>
-            <h4>By Kamil Wisniewski</h4>
+            <div className="defaultFlexLeft">
+              <h4 id="authorText">By {author.username} &#183;</h4>
+              <div id="authorText" className={"tagline" + " " + "goUp"}>{topic}</div>
             </div>
         </div>
           

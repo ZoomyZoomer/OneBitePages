@@ -8,6 +8,7 @@ const PostSchema = new Schema({
     content: {type: String, required: true},
     topic: {type: String, required: true},
     img: {type: String, required: true},
+    likes: {type: Number, required: true },
     author: {type: Schema.Types.ObjectId, ref:'User'},
 }, {
     timestamps: true,

@@ -10,15 +10,17 @@ function TagsNav() {
                 <p>Programming</p>
             </div>
             <div>
-                <p>Cooking</p>
+                <p>Mental Health</p>
             </div>          
             <div>
-                <p>Politics</p>
+                <p>Cooking</p>
             </div>
             <div>
-                <p>Mental Health</p>
+                <p>Education</p>
             </div>
-        
+            <div>
+                <p>Sports</p>
+            </div>
         </div>
     </section>
   )

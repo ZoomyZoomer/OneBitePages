@@ -76,12 +76,13 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
         const {token} = req.cookies;
         jwt.verify(token, secret, {}, async (err,info) => {
           if (err) throw err;
-          const {title, description, content, topic} = req.body;
+          const {title, description, content, topic, likes} = req.body;
           const postDoc = await Post.create({
             title,
             description,
             content,
             topic,
+            likes,
             img: newPath,
             author: info.id,
         });
@@ -117,6 +118,19 @@ app.get('/programming', async (req, res) => {
     };
 });
 
+app.get('/programming2', async (req, res) => {
+  try {
+      const programmingDoc = await Post.find({ topic: "programming" })
+      .populate('author', ['username'])
+      .sort({ createdAt: -1 })
+      .limit(6);
+      res.json(programmingDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
 app.get('/mentalHealth', async (req, res) => {
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
@@ -143,12 +157,38 @@ app.get('/cooking', async (req, res) => {
   };
 });
 
+app.get('/cooking2', async (req, res) => {
+  try {
+      const cookingDoc = await Post.find({ topic: "cooking" })
+      .populate('author', ['username'])
+      .sort({ createdAt: -1 })
+      .limit(6);
+      res.json(cookingDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
 app.get('/education', async (req, res) => {
   try {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(2);
+      res.json(educationDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
+app.get('/education2', async (req, res) => {
+  try {
+      const educationDoc = await Post.find({ topic: "education" })
+      .populate('author', ['username'])
+      .sort({ createdAt: -1 })
+      .limit(6);
       res.json(educationDoc);
   } catch (e) {
       console.log(e);
@@ -168,6 +208,13 @@ app.get('/sports', async (req, res) => {
       res.json({});
   };
 });
+
+app.get('/post/:id', async (req, res) => {
+  const {id} = req.params;
+  const postDoc = await Post.findById(id).populate('author', ['username']);
+  res.json(postDoc);
+  
+})
 
 app.listen(4000);
 

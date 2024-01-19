@@ -8,6 +8,7 @@ export default function Layout() {
             <a id="Home"/>
             <Navbar />
             <Outlet />
+            <Footer />
         </main>
     )
 
