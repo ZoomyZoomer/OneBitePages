@@ -16,7 +16,7 @@ export default function PostPage() {
     }, []);
 
 
-    if (!postInfo) return <div style={{marginTop: '1000px'}}></div>;
+    if (!postInfo) return <div style={{marginTop: '1500px'}}></div>;
     console.log(postInfo);
 
     return (

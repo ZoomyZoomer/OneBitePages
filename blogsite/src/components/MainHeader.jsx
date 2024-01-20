@@ -7,6 +7,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 function MainHeader() {
 
     const [visible, setVisible] = useState(true);
+    const [id, setId] = useState('');
+    const navigate = useNavigate();
 
     let clicked = 0;
 
@@ -30,13 +32,27 @@ function MainHeader() {
                 cookie.classList.add("eatCookieMain");
                 setVisible(false);
                 clicked = 1;
+                setTimeout(randomPost, 1500);
+                function randomPost() {
+                  navigate(`/post/${id}`);
+                }
+                
             }
+
         
     
         }
     
         
       }
+
+      useEffect(() => {
+        fetch('http://localhost:4000/cookie').then(response => {
+          response.json().then(res => {
+            setId(res._id);
+          });
+        });
+      }, []);
 
       function blackhole() {
         if (visible){

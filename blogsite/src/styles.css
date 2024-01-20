@@ -4,6 +4,10 @@ html, body{
     margin: 0;
 }
 
+body {
+    position: relative;
+}
+
 
 a {
     font-family: "Zilla Slab", sans-serif;
@@ -1143,10 +1147,6 @@ form.login h1, form.register h1 {
 
 /* FOOTER */
 
-.footerPadding {
-    padding-bottom: 165px;
-}
-
 #contact {
     margin-top: 20px;
     width: min-content;
@@ -1160,7 +1160,7 @@ form.login h1, form.register h1 {
 }
 
 .footerGridWrap {
-    margin-top: 150px;
+    margin-top: 250px;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
@@ -1168,7 +1168,6 @@ form.login h1, form.register h1 {
     text-align: center;
     background-color: #222;
     width: 100%;
-    z-index: -10;
 }
 
 

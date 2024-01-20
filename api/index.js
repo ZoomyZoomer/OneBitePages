@@ -251,4 +251,13 @@ app.get('/post/:id', async (req, res) => {
   
 })
 
+app.get('/cookie', async (req, res) => {
+  const count =  await Post.countDocuments();
+  var randomNumber = Math.floor(Math.random() * count);
+  const result = await Post.findOne({}).skip(randomNumber);
+  console.log(result);
+  res.json(result);
+});
+
+
 app.listen(4000);
