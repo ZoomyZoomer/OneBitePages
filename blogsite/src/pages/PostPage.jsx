@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 export default function PostPage() {
 
@@ -17,16 +15,15 @@ export default function PostPage() {
             });
     }, []);
 
-    useEffect(() => {
-        window.scrollTo(0,0);
-    }, []);
 
-    if (!postInfo) return '';
+    if (!postInfo) return <div style={{marginTop: '1000px'}}></div>;
     console.log(postInfo);
 
     return (
-        <div className="postWrapper">
-            <div id="topScale" className="defaultGrid">
+    
+        <div className={"postWrapper"}>
+            
+            <div id="topScale" className={"defaultGrid"}>
                 <div className="defaultGrid">
                     <div id="widthRestr" className="defaultFlexLeft">
                         <h1>{postInfo.title}</h1>

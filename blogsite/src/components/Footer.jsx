@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,8 +15,9 @@ function Footer() {
 
     }
 
+
   return (
-    <section className={"footerGridWrap" + " " + "footerAbsolute"}>
+    <section id="issue2"  className={"footerGridWrap" + " " + "footerAbsolute"}>
         <div className="defaultFlex">
             <a href="mailto: realisticallyspeaking101@gmail.com"><button id="mailButton">Contact</button></a>
         </div>
@@ -48,7 +49,7 @@ function Footer() {
 
         </div>
         <div id="tm" className="socialsFlex">
-            <p>Made in Reactjs<br></br><br></br> &#174; OneBitePages 2024</p>
+            <p>Created using the MERN Stack<br></br><br></br> &#174; OneBitePages 2024</p>
         </div>
     </section>
   )

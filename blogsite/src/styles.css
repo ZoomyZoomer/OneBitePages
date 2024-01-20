@@ -4,6 +4,7 @@ html, body{
     margin: 0;
 }
 
+
 a {
     font-family: "Zilla Slab", sans-serif;
     font-weight: 500;
@@ -12,6 +13,12 @@ a {
 
 h1 {
     font-weight: 400;
+}
+
+.megaMargin {
+    padding-top: 1000px;
+    margin-top: 1000px;
+    height: 1000px;
 }
 
 h2, h3 {
@@ -60,6 +67,7 @@ p {
 
 .navbarMainFlex {
     position: fixed;
+    top: 0;
     z-index: 1000;
     height: 60px;
     width: 100%;
@@ -213,7 +221,7 @@ p {
         opacity: 0;
     }
     100%{
-        right: 10%;
+        right: 5%;
         opacity: 1;
     }
 }
@@ -262,7 +270,7 @@ html:not([data-scroll='0']) .navbarRightFlex > a:hover {
 
 .absoluteButton {
     position: absolute;
-    right: 10%;
+    right: 5%;
     top: 18%;
 }
 
@@ -922,6 +930,20 @@ a {
     cursor: pointer;
 }
 
+#sideImageMedium {
+    margin-left: 30px;
+    padding-right: 20px;
+    width: 400px;
+    max-height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+#topicFlex {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 #sideImageSmall{
     margin-top: 20px;
     width: 240px;
@@ -935,7 +957,7 @@ a {
 }
 
 #imageH4 {
-    margin-top: 0;
+    margin-top: 5px;
     font-size: 12px;
     font-weight: 300;
     font-family: "Lato", sans-serif;
@@ -1004,14 +1026,14 @@ a {
     text-align: center;
 }
 
-.tagsNavFlex > div > p {
+.tagsNavFlex > a > div > p {
     margin: 0 20px;
     font-family: "Zilla Slab", sans-serif;
     font-size: 16px;
     font-weight: 300;
 }
 
-.tagsNavFlex > div {
+.tagsNavFlex > a > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1029,7 +1051,7 @@ a {
     background-color: white;
 }
 
-.tagsNavFlex > div:hover {
+.tagsNavFlex > a > div:hover {
     cursor: pointer;
     background-color: #ebebeb;
 }
@@ -1118,12 +1140,6 @@ form.login h1, form.register h1 {
     border-right-style: solid;
 }
 
-.footer {
-    margin-top: 150px;
-    height: 200px;
-    width: 100%;
-    background-color: #222;
-}
 
 /* FOOTER */
 
@@ -1151,7 +1167,11 @@ form.login h1, form.register h1 {
     align-items: center;
     text-align: center;
     background-color: #222;
+    width: 100%;
+    z-index: -10;
 }
+
+
 
 .socialsFlex {
     position: relative;
@@ -1363,7 +1383,7 @@ form.login h1, form.register h1 {
 }
 
 #topicButtons {
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 #trendRelative {
@@ -1561,4 +1581,50 @@ section > div > h4 {
     margin: 0 5px;
     margin-top: 2px;
     font-weight: 400;
+}
+
+/* CREATE POST */
+
+#topicButtons > button {
+    padding: 10px 20px;
+    border-width: 1px;
+    transition: background-color .3s, transform .3s;
+}
+
+#topicButtons > button:hover {
+    background-color: rgb(234, 234, 234);
+    transform: scale(1.05);
+    transition: background-color .3s, transform .3s;
+    cursor: pointer;
+}
+
+#topicButtons > p {
+    margin: 0 10px;
+}
+
+#createPostButton {
+    background-color: transparent;
+    padding: 10px 15px;
+    color: #222;
+    border-width: 1px;
+    transition: padding 0.3s, background-color 0.3s;
+}
+
+#createPostButton:hover {
+    padding: 10px 20px;
+    background-color: rgb(234, 234, 234);
+    transition: padding 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+#createGrid {
+    transform: scale(1.1);
+}
+
+.nonActiveTopicButton {
+    background-color: transparent;
+}
+
+.activeTopicButton {
+    background-color: rgb(234, 234, 234);
 }

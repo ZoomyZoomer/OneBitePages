@@ -52,17 +52,31 @@ app.post('/register', async (req,res) => {
     }
   });
   
-  app.get('/profile', (req,res) => {
-    const {token} = req.cookies;
-    jwt.verify(token, secret, {}, (err,info) => {
-      if (err) throw err;
-      res.json(info);
-    });
+  app.get('/profile', (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token) {
+    // If there's no token in the cookies, the user is not logged in
+    return res.status(401).json({ message: 'Not logged in' });
+  }
+
+  jwt.verify(token, secret, {}, (err, info) => {
+    if (err) {
+      // If there's an error in token verification, the user is not logged in
+      return res.status(401).json({ message: 'Not logged in' });
+    }
+
+    // If token verification is successful, the user is logged in
+    // You can also send additional user information if needed
+    res.status(200).json({ message: 'Logged in', user: info });
   });
+});
   
-  app.post('/logout', (req,res) => {
-    res.cookie('token', '').json('ok');
-  });
+app.post('/logout', (req, res) => {
+  // Clear the 'token' cookie by setting it to null and expiring it immediately
+  res.cookie('token', null, { expires: new Date(0), httpOnly: true });
+  res.json('Logged out successfully');
+});
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
@@ -123,7 +137,6 @@ app.get('/programming2', async (req, res) => {
       const programmingDoc = await Post.find({ topic: "programming" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
-      .limit(6);
       res.json(programmingDoc);
   } catch (e) {
       console.log(e);
@@ -137,6 +150,18 @@ app.get('/mentalHealth', async (req, res) => {
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
       .limit(3);
+      res.json(mentalHealthDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
+app.get('/mentalHealth2', async (req, res) => {
+  try {
+      const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
+      .populate('author', ['username'])
+      .sort({ createdAt: -1 })
       res.json(mentalHealthDoc);
   } catch (e) {
       console.log(e);
@@ -162,7 +187,6 @@ app.get('/cooking2', async (req, res) => {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
-      .limit(6);
       res.json(cookingDoc);
   } catch (e) {
       console.log(e);
@@ -188,7 +212,6 @@ app.get('/education2', async (req, res) => {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
       .sort({ createdAt: -1 })
-      .limit(6);
       res.json(educationDoc);
   } catch (e) {
       console.log(e);
@@ -209,6 +232,18 @@ app.get('/sports', async (req, res) => {
   };
 });
 
+app.get('/sports2', async (req, res) => {
+  try {
+      const sportsDoc = await Post.find({ topic: "sports" })
+      .populate('author', ['username'])
+      .sort({ createdAt: -1 })
+      res.json(sportsDoc);
+  } catch (e) {
+      console.log(e);
+      res.json({});
+  };
+});
+
 app.get('/post/:id', async (req, res) => {
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
@@ -217,5 +252,3 @@ app.get('/post/:id', async (req, res) => {
 })
 
 app.listen(4000);
-
-

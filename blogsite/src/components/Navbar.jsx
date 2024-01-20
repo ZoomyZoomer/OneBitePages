@@ -5,14 +5,14 @@ import { faCookie } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import {Link, Navigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
 import { UserContext } from '../UserContext'
 
 
 
 export default function Navbar() {
 
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
@@ -25,13 +25,18 @@ export default function Navbar() {
     });
   }, []);
 
-  function logout() {
-    fetch('http://localhost:4000/logout', {
-      credentials: 'include',
-      method: 'POST',
-    });
-    setRedirect(true);
-    setUserInfo(null);
+  async function logout() {
+    try {
+      await fetch('http://localhost:4000/logout', {
+        credentials: 'include',
+        method: 'POST',
+      });
+  
+      setUserInfo(null);
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 
   const username = userInfo?.username;
@@ -55,11 +60,6 @@ export default function Navbar() {
         clicked = 1;
       }
     }
-
-    if (redirect){
-      return <Navigate to={'/'} />
-  }
-
     
   }
 

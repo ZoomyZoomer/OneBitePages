@@ -40,9 +40,9 @@ function MainArticleSet() {
   }, []);
 
   const firstThreeProgrammingPosts = programmingPosts.slice(0, 3);
-  const remainingProgrammingPosts = programmingPosts.slice(3);
+  const remainingProgrammingPosts = programmingPosts.slice(3,6);
   const firstMentalHealthPost = mentalHealthPosts.slice(0, 1);
-  const remainingMentalHealthPosts = mentalHealthPosts.slice(1);
+  const remainingMentalHealthPosts = mentalHealthPosts.slice(1,3);
 
   return (
     <>
@@ -161,7 +161,7 @@ function SubArticleSet() {
         <div id="lineBottom" className="defaultFlexLeft">
             <h1 id="sideH1">Sports</h1>
           </div>
-          <div id="limitSize350" className={"defaultGridLeftSmall" + " " + "sideTop" + " " + "scaler"}>
+          <div id="limitSize350" className={"defaultGridLeftSmall" + " " + "sideTop" + " " + "scaler"} style={{marginTop: '5px'}}>
               <div className="defaultFlexLeft">
                 {firstSportsPost.length > 0 && (
                   <img id="sideImageSmall" src={firstSportsPost[0].img.replace("..\\blogsite\\public\\", "")} />
@@ -196,7 +196,7 @@ function ImageArticle({_id, title, img, author, topic}){
           <div className="defaultFlexLeft">
             <h4 id="imageH4">By {author.username}</h4>
             <div className="defaultFlex">
-            <div id="authorText" className="tagline">{topic}</div>
+            <div id="authorText" className="tagline" style={{marginTop: '-10px'}}>{topic}</div>
             </div>
           </div>
         </div>
@@ -209,6 +209,8 @@ function ImageArticle({_id, title, img, author, topic}){
 function ImageArticleSet(){
 
   const [cookingPosts, setCookingPosts] = useState([]);
+
+  const allCookingPosts = cookingPosts.slice(0, 6);
 
   useEffect(() => {
     fetch('http://localhost:4000/cooking2').then(response => {
@@ -224,7 +226,7 @@ function ImageArticleSet(){
       <h1>Cooking</h1>
     </div>
     <div className="defaultFlex">
-      {cookingPosts.length > 0 && cookingPosts.map(post => (
+      {allCookingPosts.length > 0 && allCookingPosts.map(post => (
             <ImageArticle key={post.id} {...post} />
       ))}
     </div>
@@ -308,26 +310,28 @@ function Trends() {
   )
 }
 
-function ArticleTrend({title, description, author, topic}){
+function ArticleTrend({_id, title, description, author, topic}){
 
   return (
-    <div className="trendy">
-      <section className={"borderBottom" + " " + "scaler"}>
-              <h1>{title}</h1>
-              <p>{description}</p>
-              <div className="defaultFlexLeft">
-                <h4>By {author.username} &#183;</h4>
-                <div className="tagline">{topic}</div>
-              </div>
-      </section>
-    </div>
+    <Link to={`/post/${_id}`}>
+      <div className="trendy">
+        <section className={"borderBottom" + " " + "scaler"}>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <div className="defaultFlexLeft">
+                  <h4>By {author.username} &#183;</h4>
+                  <div className="tagline">{topic}</div>
+                </div>
+        </section>
+      </div>
+    </Link>
   )
 
 }
 
 
 function HomePage() {
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const modules ={
     toolbar: [
@@ -21,21 +22,21 @@ const formats = [
 ];
 
 export default function CreatePost(){
+    const navigate = useNavigate();
 
     const [title,setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
     const [topic, setTopic] = useState('');
     const [files, setFiles] = useState('');
-    const [redirect, setRedirect] = useState(false);
 
     async function createNewPost(e) {
+        resetButtons();
         const data = new FormData();
         data.set('title', title);
         data.set('description', description);
         data.set('content', content);
         data.set('topic', topic);
-        data.set('likes', 0);
         data.set('file', files[0]);
             
         e.preventDefault();
@@ -46,24 +47,42 @@ export default function CreatePost(){
         });
 
         if (response.status === 200){
-            setRedirect(true);
+            navigate('/');
         } else {
             alert('Enter all fields');
         }
     }
 
-    if (redirect) {
-        return <Navigate to={'/'} />
-    }
 
-    return (
-        <><div id="topicButtons" className="defaultFlex">
-                <button onClick={() => setTopic("programming")}>Programming</button>
-                <button onClick={() => setTopic("mentalHealth")}>Mental Health</button>
-                <button onClick={() => setTopic('cooking')}>Cooking</button>
-                <button onClick={() => setTopic('education')}>Education</button>
-                <button onClick={() => setTopic('sports')}>Sports</button>
-            </div>
+    function activeButton(e) {
+        resetButtons();
+        document.getElementById(e.target.id).classList.add("activeTopicButton");
+      }
+      
+      function resetButtons() {
+        const buttonIds = ["programmingB", "mentalHealthB", "cookingB", "educationB", "sportsB"];
+      
+        buttonIds.forEach((buttonId) => {
+          const button = document.getElementById(buttonId);
+          button.classList.remove("activeTopicButton");
+          button.classList.add("nonActiveTopicButton");
+        });
+      }
+
+      useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+      
+      return (
+        <div id="createGrid" className="defaultGrid">
+          <div id="topicButtons" style={{marginBottom: '5px'}}className="defaultFlex">
+            <p>Select A Topic: </p>
+            <button id="programmingB" className="nonActiveTopicButton" onClick={(e) => {setTopic("programming"); activeButton(e)}}>Programming</button>
+            <button id="mentalHealthB" className="nonActiveTopicButton" onClick={(e) => {setTopic("mentalHealth"); activeButton(e)}}>Mental Health</button>
+            <button id="cookingB" className="nonActiveTopicButton" onClick={(e) => {setTopic('cooking'); activeButton(e)}}>Cooking</button>
+            <button id="educationB" className="nonActiveTopicButton" onClick={(e) => {setTopic('education'); activeButton(e)}}>Education</button>
+            <button id="sportsB" className="nonActiveTopicButton" onClick={(e) => {setTopic('sports'); activeButton(e)}}>Sports</button>
+          </div>
             <form onSubmit={createNewPost}>
                 <input type="title" 
                     placeholder={'Title'} 
@@ -75,13 +94,20 @@ export default function CreatePost(){
                     onChange={e => setDescription(e.target.value)}/>
                 <input type="file" 
                     onChange={e => setFiles(e.target.files)}/>
-                <ReactQuill 
+                <ReactQuill style={{
+                        resize: 'both',
+                        overflow: 'auto',
+                        width: '100%',
+                        height: '200px',
+                        maxWidth: '1000px',
+                        minWidth: '300px',
+                    }}
                     value={content} 
                     onChange={newValue => setContent(newValue)}
                     modules={modules} 
                     formats={formats}/>
-                <button style={{marginTop: '5px'}}>Create Post</button>
+                <button id="createPostButton" style={{marginTop: '20px'}}>Create Post</button>
             </form>
-        </>
+        </div>
     )
 }

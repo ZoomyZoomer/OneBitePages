@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 import { faCookie } from '@fortawesome/free-solid-svg-icons'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function MainHeader() {
 
@@ -47,6 +48,30 @@ function MainHeader() {
         document.getElementById("blackhole").classList.add("noOpacity");
       }
 
+      const [redirect, setRedirect] = useState(0);
+
+      async function checkIfLoggedIn() {
+        const response = await fetch('http://localhost:4000/profile', {
+          credentials: 'include',
+        })
+        if (response.status === 401){
+          setRedirect(1);
+        } else {
+          setRedirect(2);
+        }
+      }
+
+      if (redirect === 1){
+        return <Navigate to={'/login'} />
+      }
+
+      if (redirect === 2) {
+        return <Navigate to={'/create'} />
+      }
+    
+
+      
+
 
   return (
     <>
@@ -74,7 +99,7 @@ function MainHeader() {
                 <p id="introText">Create your own bite-sized story, article, or thought bubble.</p>
               </div>
               <div className="defaultFlexLeft">
-                <button>Start Posting</button>
+                <button onClick={() => checkIfLoggedIn()}>Start Posting</button>
               </div>
               
           </div>
