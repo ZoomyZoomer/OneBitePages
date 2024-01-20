@@ -15,9 +15,16 @@ export default function PostPage() {
             });
     }, []);
 
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
 
     if (!postInfo) return <div style={{marginTop: '1500px'}}></div>;
     console.log(postInfo);
+
+
+      
 
     return (
     
