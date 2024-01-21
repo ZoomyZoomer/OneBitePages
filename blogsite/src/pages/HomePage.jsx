@@ -6,7 +6,7 @@ import ArticleMain from "../components/ArticleMain";
 import ArticleMainBottom from "../components/ArticleMainBottom";
 import SideArticlesTop from '../components/sideArticlesTop';
 import SideArticlesBottom from '../components/SideArticlesBottom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../components/Footer';
 
