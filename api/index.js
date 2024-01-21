@@ -8,19 +8,40 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: '../blogsite/public/uploads/' });
+const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs = require('fs');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
+const bucket ='kamil-blog-app';
 
 app.use(cors({credentials:true, origin:'http://localhost:5173'}));
 app.use(express.json());
 app.use(cookieParser());
 
-mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
+async function uploadToS3(path, originalFilename, mimetype) {
+  const client = new S3Client({
+    region: 'us-east-2',
+    credentials: {
+      accessKeyId: 'AKIA6GBMHQXVF7OIT3NQ',
+      secretAccessKey: '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',
+    }
+  });
+  const parts = originalFilename.split('.');
+  const ext = parts[parts.length - 1];
+  const newFilename = Date.now() + '.' + ext;
+  const data = await client.send(new PutObjectCommand({
+    Bucket: bucket,
+    Body: fs.readFileSync(path),
+    Key: newFilename,
+    ContentType: mimetype,
+    ACL: 'public-read',
+  }));
+  return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
+}
 
 app.post('/register', async (req,res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     try{
       const userDoc = await User.create({
@@ -35,6 +56,7 @@ app.post('/register', async (req,res) => {
   });
   
   app.post('/login', async (req,res) => {
+    mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -53,6 +75,7 @@ app.post('/register', async (req,res) => {
   });
   
   app.get('/profile', (req, res) => {
+    mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const { token } = req.cookies;
 
   if (!token) {
@@ -73,19 +96,19 @@ app.post('/register', async (req,res) => {
 });
   
 app.post('/logout', (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
   res.json('Logged out successfully');
 });
 
+const uploadMiddleware = multer({ dest: '/tmp' });
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
 
     try {
-        const {originalname, path} = req.file;
-        const parts = originalname.split('.');
-        const ext = parts[parts.length - 1];
-        const newPath = path+'.'+ext;
-        fs.renameSync(path, newPath);
+        const {originalname, path, mimetype} = req.file;
+        const url = await uploadToS3(path, originalname, mimetype);
         
         const {token} = req.cookies;
         jwt.verify(token, secret, {}, async (err,info) => {
@@ -96,8 +119,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
             description,
             content,
             topic,
-            likes,
-            img: newPath,
+            img: url,
             author: info.id,
         });
         res.json(postDoc);
@@ -111,6 +133,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
     const {originalname,path} = req.file;
@@ -143,6 +166,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 });
 
 app.get('/post', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));
   } catch(e) {
@@ -152,6 +176,7 @@ app.get('/post', async (req, res) => {
 })
 
 app.get('/programming', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     try {
         const programmingDoc = await Post.find({ topic: "programming" })
         .populate('author', ['username'])
@@ -165,6 +190,7 @@ app.get('/programming', async (req, res) => {
 });
 
 app.get('/programming2', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const programmingDoc = await Post.find({ topic: "programming" })
       .populate('author', ['username'])
@@ -177,6 +203,7 @@ app.get('/programming2', async (req, res) => {
 });
 
 app.get('/mentalHealth', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
       .populate('author', ['username'])
@@ -190,6 +217,7 @@ app.get('/mentalHealth', async (req, res) => {
 });
 
 app.get('/mentalHealth2', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
       .populate('author', ['username'])
@@ -202,6 +230,7 @@ app.get('/mentalHealth2', async (req, res) => {
 });
 
 app.get('/cooking', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
@@ -215,6 +244,7 @@ app.get('/cooking', async (req, res) => {
 });
 
 app.get('/cooking2', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
@@ -227,6 +257,7 @@ app.get('/cooking2', async (req, res) => {
 });
 
 app.get('/education', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
@@ -240,6 +271,7 @@ app.get('/education', async (req, res) => {
 });
 
 app.get('/education2', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
@@ -252,6 +284,7 @@ app.get('/education2', async (req, res) => {
 });
 
 app.get('/sports', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
       .populate('author', ['username'])
@@ -265,6 +298,7 @@ app.get('/sports', async (req, res) => {
 });
 
 app.get('/sports2', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
       .populate('author', ['username'])
@@ -277,6 +311,7 @@ app.get('/sports2', async (req, res) => {
 });
 
 app.get('/post/:id', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
   res.json(postDoc);
@@ -284,6 +319,7 @@ app.get('/post/:id', async (req, res) => {
 })
 
 app.get('/cookie', async (req, res) => {
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const count =  await Post.countDocuments();
   var randomNumber = Math.floor(Math.random() * count);
   const result = await Post.findOne({}).skip(randomNumber);

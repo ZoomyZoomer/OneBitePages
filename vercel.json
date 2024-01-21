@@ -1,0 +1,11 @@
+{
+    "buildCommand": "cd blogsite && npm install && ./node_modules/vite/bin/vite.js build",
+    "outputDirectory": "blogsite/dist",
+    "framekwork": "vite",
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/index.js"
+        }
+    ]
+}
