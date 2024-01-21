@@ -47,7 +47,7 @@ function MainHeader() {
       }
 
       useEffect(() => {
-        fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/cookie').then(response => {
+        fetch('https://one-bite-pages.vercel.app/cookie').then(response => {
           response.json().then(res => {
             setId(res._id);
           });
@@ -67,7 +67,7 @@ function MainHeader() {
       const [redirect, setRedirect] = useState(0);
 
       async function checkIfLoggedIn() {
-        const response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/profile', {
+        const response = await fetch('https://one-bite-pages.vercel.app/profile', {
           credentials: 'include',
         })
         if (response.status === 401){
