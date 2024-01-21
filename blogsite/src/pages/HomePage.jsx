@@ -16,7 +16,7 @@ function MainArticleSet() {
   const [mentalHealthPosts, setMentalHealthPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -24,7 +24,7 @@ function MainArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/programming2').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/programming2').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });
@@ -32,7 +32,7 @@ function MainArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/mentalhealth').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/mentalhealth').then(response => {
       response.json().then(posts => {
         setMentalHealthPosts(posts);
       });
@@ -104,7 +104,7 @@ function SubArticleSet() {
   const [sportsPosts, setSportsPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -112,7 +112,7 @@ function SubArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/education2').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/education2').then(response => {
       response.json().then(posts => {
         setEducationPosts(posts);
       });
@@ -120,7 +120,7 @@ function SubArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/sports').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/sports').then(response => {
       response.json().then(posts => {
         setSportsPosts(posts);
       });
@@ -213,7 +213,7 @@ function ImageArticleSet(){
   const allCookingPosts = cookingPosts.slice(0, 6);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/cooking2').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/cooking2').then(response => {
       response.json().then(posts => {
         setCookingPosts(posts);
       });
@@ -244,7 +244,7 @@ function Trends() {
   const [cookingPosts, setCookingPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -252,7 +252,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/programming').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/programming').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });
@@ -260,7 +260,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/education').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/education').then(response => {
       response.json().then(posts => {
         setEducationPosts(posts);
       });
@@ -268,7 +268,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/cooking').then(response => {
+    fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/cooking').then(response => {
       response.json().then(posts => {
         setCookingPosts(posts);
       });

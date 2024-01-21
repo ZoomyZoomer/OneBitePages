@@ -24,7 +24,7 @@ export default function CreatePost(){
         data.set('file', files[0]);
             
         e.preventDefault();
-        const response = await fetch("https://one-bite-pages.vercel.app/post", {
+        const response = await fetch("https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/post", {
             method: 'POST',
             body: data,
             credentials: 'include',
