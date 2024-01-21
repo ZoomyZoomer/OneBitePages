@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 export default function PostPage() {
 
     const [postInfo, setPostInfo] = useState(null);
+    const {userInfo} = useContext(UserContext);
     const {id} = useParams();
 
     useEffect(() => {
@@ -41,6 +43,9 @@ export default function PostPage() {
                     <div id="postH4" className="defaultFlexLeft3">
                         <h4>By {postInfo.author.username} &#183;</h4>
                         <div className="tagline">{postInfo.topic}</div>
+                        {userInfo.id === postInfo.author._id && (
+                            <Link className="edit-button" to={`/edit/${postInfo._id}`}>Edit this Post</Link>
+                        )}
                     </div>
                     <div className="defaultFlex">
                     <img id="postImage" src={postInfo.img.replace("..\\blogsite\\public\\", "..\\")}/>

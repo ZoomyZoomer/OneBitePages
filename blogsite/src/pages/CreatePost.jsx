@@ -3,23 +3,7 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-const modules ={
-    toolbar: [
-        [{ 'header': [1, 2, false] }],
-        ['bold', 'italic', 'underline','strike', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-        ['link', 'image'],
-        ['clean']
-      ],
-    };
-
-const formats = [
-        'header',
-        'bold', 'italic', 'underline', 'strike', 'blockquote',
-        'list', 'bullet', 'indent',
-        'link', 'image'
-];
+import Editor from "../components/Editor";
 
 export default function CreatePost(){
     const navigate = useNavigate();
@@ -94,18 +78,7 @@ export default function CreatePost(){
                     onChange={e => setDescription(e.target.value)}/>
                 <input type="file" 
                     onChange={e => setFiles(e.target.files)}/>
-                <ReactQuill style={{
-                        resize: 'both',
-                        overflow: 'auto',
-                        width: '100%',
-                        height: '200px',
-                        maxWidth: '1000px',
-                        minWidth: '300px',
-                    }}
-                    value={content} 
-                    onChange={newValue => setContent(newValue)}
-                    modules={modules} 
-                    formats={formats}/>
+                <Editor onChange={setContent} value={content}/>
                 <button id="createPostButton" style={{marginTop: '20px'}}>Create Post</button>
             </form>
         </div>

@@ -1627,3 +1627,16 @@ section > div > h4 {
 .activeTopicButton {
     background-color: rgb(234, 234, 234);
 }
+
+.edit-button {
+    margin-top: 5px;
+    color: rgb(179, 179, 179);
+    transition: color .3s;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    color: #222;
+    text-decoration: underline;
+    transition: color .3s;
+}
