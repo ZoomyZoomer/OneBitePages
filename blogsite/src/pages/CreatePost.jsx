@@ -24,7 +24,7 @@ export default function CreatePost(){
         data.set('file', files[0]);
             
         e.preventDefault();
-        const response = await fetch("http://127.0.0.1:4000/api/post", {
+        const response = await fetch("http://127.0.0.1:4000/post", {
             method: 'POST',
             body: data,
             credentials: 'include',
