@@ -15,7 +15,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
 
-app.use(cors({credentials:true, origin:'https://76.76.21.241:443'}));
+app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 
