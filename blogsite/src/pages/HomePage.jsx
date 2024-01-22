@@ -244,7 +244,7 @@ function Trends() {
   const [cookingPosts, setCookingPosts] = useState([]);
 
   useEffect(() => {
-    fetch('76.76.21.164/api/post').then(response => {
+    fetch('/api/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -252,7 +252,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('76.76.21.164/api/programming').then(response => {
+    fetch('/api/programming').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });
@@ -260,7 +260,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('76.76.21.164/api/education').then(response => {
+    fetch('/api/education').then(response => {
       response.json().then(posts => {
         setEducationPosts(posts);
       });
@@ -268,7 +268,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('76.76.21.164/api/cooking').then(response => {
+    fetch('/api/cooking').then(response => {
       response.json().then(posts => {
         setCookingPosts(posts);
       });
