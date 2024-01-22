@@ -25,7 +25,7 @@ export default function CreatePost(){
         data.set('file', files[0]);
             
         e.preventDefault();
-        const response = await fetch("142.250.176.195:443/post", {
+        const response = await fetch("/post", {
             method: 'POST',
             body: data,
             credentials: 'include',
