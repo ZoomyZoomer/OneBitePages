@@ -257,7 +257,7 @@ app.get('/cooking2', async (req, res) => {
   };
 });
 
-app.get('76.76.21.164/api/education', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/api/education', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
