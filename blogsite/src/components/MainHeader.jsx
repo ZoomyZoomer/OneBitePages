@@ -47,7 +47,7 @@ function MainHeader() {
       }
 
       useEffect(() => {
-        fetch('https://one-bite-pages.vercel.app/cookie').then(response => {
+        fetch('/cookie').then(response => {
           response.json().then(res => {
             setId(res._id);
           });

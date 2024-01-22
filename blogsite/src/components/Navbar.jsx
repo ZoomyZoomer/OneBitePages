@@ -16,7 +16,7 @@ export default function Navbar() {
 
   const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/profile', {
+    fetch('/profile', {
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -27,7 +27,7 @@ export default function Navbar() {
 
   async function logout() {
     try {
-      await fetch('https://one-bite-pages.vercel.app/logout', {
+      await fetch('/logout', {
         credentials: 'include',
         method: 'POST',
       });
