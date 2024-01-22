@@ -9,6 +9,10 @@ import CreatePost from './pages/CreatePost.jsx';
 import PostPage from './pages/PostPage.jsx';
 import TopicPage from './pages/TopicPage.jsx';
 import EditPost from './pages/EditPost.jsx';
+import axios from 'axios';
+
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+axios.defaults.withCredentials = true;
 
 function App() {
 
