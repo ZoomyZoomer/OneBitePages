@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Editor from "../components/Editor";
+import axios from "axios";
 
 export default function CreatePost(){
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function CreatePost(){
         data.set('file', files[0]);
             
         e.preventDefault();
-        const response = await fetch("https://76.76.21.241:443/post", {
+        const response = await axios.get("/post", {
             method: 'POST',
             body: data,
             credentials: 'include',
