@@ -7,5 +7,12 @@
             "source": "/api/(.*)",
             "destination": "/api/index.js"
         }
-    ]
+    ],
+    "builds": [
+        {
+          "src": "api/index.js",
+          "use": "@now/node",
+          "config": { "maxDuration": 300 }
+        }
+      ]
 }
