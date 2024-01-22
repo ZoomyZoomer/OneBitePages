@@ -41,7 +41,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.post('/register', async (req,res) => {
+app.post('/api/register', async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     try{
@@ -56,7 +56,7 @@ app.post('/register', async (req,res) => {
     }
   });
   
-  app.post('/login', async (req,res) => {
+  app.post('/api/login', async (req,res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
@@ -75,7 +75,7 @@ app.post('/register', async (req,res) => {
     }
   });
   
-  app.get('/profile', (req, res) => {
+  app.get('/api/profile', (req, res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const { token } = req.cookies;
 
@@ -96,7 +96,7 @@ app.post('/register', async (req,res) => {
   });
 });
   
-app.post('/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
@@ -104,7 +104,7 @@ app.post('/logout', (req, res) => {
 });
 
 const uploadMiddleware = multer({ dest: '/tmp' });
-app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
 
     try {
@@ -133,7 +133,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
@@ -166,7 +166,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/post', async (req, res) => {
+app.get('/api/post', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));
@@ -176,7 +176,7 @@ app.get('/post', async (req, res) => {
   }
 })
 
-app.get('76.76.21.164/api/programming', async (req, res) => {
+app.get('/api/programming', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     try {
         const programmingDoc = await Post.find({ topic: "programming" })
@@ -190,7 +190,7 @@ app.get('76.76.21.164/api/programming', async (req, res) => {
     };
 });
 
-app.get('/programming2', async (req, res) => {
+app.get('/api/programming2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const programmingDoc = await Post.find({ topic: "programming" })
@@ -203,7 +203,7 @@ app.get('/programming2', async (req, res) => {
   };
 });
 
-app.get('/mentalHealth', async (req, res) => {
+app.get('/api/mentalHealth', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
@@ -217,7 +217,7 @@ app.get('/mentalHealth', async (req, res) => {
   };
 });
 
-app.get('/mentalHealth2', async (req, res) => {
+app.get('/api/mentalHealth2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
@@ -230,7 +230,7 @@ app.get('/mentalHealth2', async (req, res) => {
   };
 });
 
-app.get('/cooking', async (req, res) => {
+app.get('/api/cooking', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
@@ -244,7 +244,7 @@ app.get('/cooking', async (req, res) => {
   };
 });
 
-app.get('/cooking2', async (req, res) => {
+app.get('/api/cooking2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
@@ -257,7 +257,7 @@ app.get('/cooking2', async (req, res) => {
   };
 });
 
-app.get('/education', async (req, res) => {
+app.get('/api/education', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
@@ -271,7 +271,7 @@ app.get('/education', async (req, res) => {
   };
 });
 
-app.get('/education2', async (req, res) => {
+app.get('/api/education2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
@@ -284,7 +284,7 @@ app.get('/education2', async (req, res) => {
   };
 });
 
-app.get('/sports', async (req, res) => {
+app.get('/api/sports', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
@@ -298,7 +298,7 @@ app.get('/sports', async (req, res) => {
   };
 });
 
-app.get('/sports2', async (req, res) => {
+app.get('/api/sports2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
@@ -311,7 +311,7 @@ app.get('/sports2', async (req, res) => {
   };
 });
 
-app.get('/post/:id', async (req, res) => {
+app.get('/api/post/:id', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
@@ -319,7 +319,7 @@ app.get('/post/:id', async (req, res) => {
   
 })
 
-app.get('/cookie', async (req, res) => {
+app.get('/api/cookie', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const count =  await Post.countDocuments();
   var randomNumber = Math.floor(Math.random() * count);
