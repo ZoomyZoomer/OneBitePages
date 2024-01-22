@@ -47,7 +47,7 @@ function MainHeader() {
       }
 
       useEffect(() => {
-        fetch('/cookie').then(response => {
+        fetch('http://localhost:4000/cookie').then(response => {
           response.json().then(res => {
             setId(res._id);
           });
@@ -67,7 +67,7 @@ function MainHeader() {
       const [redirect, setRedirect] = useState(0);
 
       async function checkIfLoggedIn() {
-        const response = await fetch('https://one-bite-pages.vercel.app/profile', {
+        const response = await fetch('http://localhost:4000/profile', {
           credentials: 'include',
         })
         if (response.status === 401){
