@@ -18,7 +18,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
 
-app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app/api'}));
+app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -43,7 +43,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.post('/api/register', async (req,res) => {
+app.post('https://one-bite-pages.vercel.app/register', async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     try{
@@ -58,7 +58,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.post('/api/login', async (req,res) => {
+  app.post('https://one-bite-pages.vercel.app/login', async (req,res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
@@ -77,7 +77,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.get('/api/profile', (req, res) => {
+  app.get('https://one-bite-pages.vercel.app/profile', (req, res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const { token } = req.cookies;
 
@@ -98,7 +98,7 @@ app.post('/api/register', async (req,res) => {
   });
 });
   
-app.post('/api/logout', (req, res) => {
+app.post('https://one-bite-pages.vercel.app/logout', (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
@@ -106,7 +106,7 @@ app.post('/api/logout', (req, res) => {
 });
 
 const uploadMiddleware = multer({ dest: '/tmp' });
-app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
+app.post('https://one-bite-pages.vercel.app/post', uploadMiddleware.single('file'), async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
 
     try {
@@ -135,7 +135,7 @@ app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('https://one-bite-pages.vercel.app/post',uploadMiddleware.single('file'), async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
@@ -168,7 +168,7 @@ app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/api/post', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/post', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));
@@ -178,7 +178,7 @@ app.get('/api/post', async (req, res) => {
   }
 })
 
-app.get('/api/programming', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/programming', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     try {
         const programmingDoc = await Post.find({ topic: "programming" })
@@ -192,7 +192,7 @@ app.get('/api/programming', async (req, res) => {
     };
 });
 
-app.get('/api/programming2', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/programming2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const programmingDoc = await Post.find({ topic: "programming" })
@@ -205,7 +205,7 @@ app.get('/api/programming2', async (req, res) => {
   };
 });
 
-app.get('/api/mentalHealth', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/mentalHealth', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
@@ -219,7 +219,7 @@ app.get('/api/mentalHealth', async (req, res) => {
   };
 });
 
-app.get('/api/mentalHealth2', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/mentalHealth2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
@@ -232,7 +232,7 @@ app.get('/api/mentalHealth2', async (req, res) => {
   };
 });
 
-app.get('/api/cooking', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/cooking', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
@@ -246,7 +246,7 @@ app.get('/api/cooking', async (req, res) => {
   };
 });
 
-app.get('/api/cooking2', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/cooking2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
@@ -259,7 +259,7 @@ app.get('/api/cooking2', async (req, res) => {
   };
 });
 
-app.get('/api/education', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/education', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
@@ -273,7 +273,7 @@ app.get('/api/education', async (req, res) => {
   };
 });
 
-app.get('/api/education2', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/education2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const educationDoc = await Post.find({ topic: "education" })
@@ -286,7 +286,7 @@ app.get('/api/education2', async (req, res) => {
   };
 });
 
-app.get('/api/sports', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/sports', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
@@ -300,7 +300,7 @@ app.get('/api/sports', async (req, res) => {
   };
 });
 
-app.get('/api/sports2', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/sports2', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
@@ -313,7 +313,7 @@ app.get('/api/sports2', async (req, res) => {
   };
 });
 
-app.get('/api/post/:id', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/post/:id', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
@@ -321,7 +321,7 @@ app.get('/api/post/:id', async (req, res) => {
   
 })
 
-app.get('/api/cookie', async (req, res) => {
+app.get('https://one-bite-pages.vercel.app/cookie', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const count =  await Post.countDocuments();
   var randomNumber = Math.floor(Math.random() * count);

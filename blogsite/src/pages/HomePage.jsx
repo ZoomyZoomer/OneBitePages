@@ -16,7 +16,7 @@ function MainArticleSet() {
   const [mentalHealthPosts, setMentalHealthPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post').then(response => {
+    fetch('http://76.76.21.241:4000/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -24,7 +24,7 @@ function MainArticleSet() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/programming2').then(response => {
+    fetch('http://76.76.21.241:4000/programming2').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });

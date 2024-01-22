@@ -9,7 +9,7 @@ export default function RegisterPage(){
 
     async function register(e){
         e.preventDefault();
-        const response = await fetch('https://76.76.21.241:443/register', {
+        const response = await fetch('http://76.76.21.241:4000/register', {
             method: 'POST',
             body: JSON.stringify({username,password}),
             headers: {'Content-Type':'application/json'},
