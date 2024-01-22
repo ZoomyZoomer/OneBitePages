@@ -12,7 +12,7 @@ export default function LoginPage() {
 
     async function login(e){
         e.preventDefault();
-       const response = await fetch('https://one-bite-pages.vercel.app/api/login', {
+       const response = await fetch('https://76.76.21.241:443/login', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type':'application/json'},

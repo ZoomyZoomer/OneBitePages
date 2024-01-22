@@ -9,7 +9,7 @@ export default function PostPage() {
     const {id} = useParams();
 
     useEffect(() => {
-        fetch(`https://one-bite-pages.vercel.app/post/${id}`)
+        fetch(`https://76.76.21.241:443/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);

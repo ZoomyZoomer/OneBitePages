@@ -15,7 +15,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
 
-app.use(cors({credentials:true, origin:'76.76.21.241:443'}));
+app.use(cors({credentials:true, origin:'https://76.76.21.241:443'}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -40,7 +40,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.post('/api/register', async (req,res) => {
+app.post('/register', async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     try{
@@ -55,7 +55,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.post('/api/login', async (req,res) => {
+  app.post('/login', async (req,res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
@@ -74,7 +74,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.get('/api/profile', (req, res) => {
+  app.get('/profile', (req, res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const { token } = req.cookies;
 

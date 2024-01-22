@@ -244,7 +244,7 @@ function Trends() {
   const [cookingPosts, setCookingPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post').then(response => {
+    fetch('https://76.76.21.241:443/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });
@@ -252,7 +252,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/programming').then(response => {
+    fetch('https://76.76.21.241:443/programming').then(response => {
       response.json().then(posts => {
         setProgrammingPosts(posts);
       });
@@ -260,7 +260,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/education').then(response => {
+    fetch('https://76.76.21.241:443/education').then(response => {
       response.json().then(posts => {
         setEducationPosts(posts);
       });
@@ -268,7 +268,7 @@ function Trends() {
   }, []);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/cooking').then(response => {
+    fetch('https://76.76.21.241:443/cooking').then(response => {
       response.json().then(posts => {
         setCookingPosts(posts);
       });

@@ -45,19 +45,19 @@ function TopicPage() {
 
         switch (routeTopic) {
             case 'programming':
-              response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/programming2');
+              response = await fetch('https://76.76.21.241:443/programming2');
               break;
             case 'mentalHealth':
-              response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/mentalHealth2');
+              response = await fetch('https://76.76.21.241:443/mentalHealth2');
               break;
             case 'cooking':
-              response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/cooking2');
+              response = await fetch('https://76.76.21.241:443/cooking2');
               break;
             case 'sports':
-              response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/sports2');
+              response = await fetch('https://76.76.21.241:443/sports2');
               break;
             case 'education':
-              response = await fetch('https://one-bite-pages-9danetx5x-kamil-wisniewskis-projects.vercel.app/education2');
+              response = await fetch('https://76.76.21.241:443/education2');
               break;
             default:
               
