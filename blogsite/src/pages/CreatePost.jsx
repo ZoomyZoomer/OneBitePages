@@ -25,7 +25,7 @@ export default function CreatePost(){
         data.set('file', files[0]);
             
         e.preventDefault();
-        const response = await fetch("/post", {
+        const response = await fetch("https://my-blog-app.vercel.app/api/post", {
             method: 'POST',
             body: data,
             credentials: 'include',
