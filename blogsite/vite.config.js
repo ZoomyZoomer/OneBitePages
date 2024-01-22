@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['axios', '@fortawesome/react-fontawesome'],
+    include: ['express', 'axios', '@fortawesome/react-fontawesome'],
   },
 });
