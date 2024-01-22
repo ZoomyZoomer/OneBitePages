@@ -12,7 +12,7 @@ export default function EditPost() {
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/post/'+id)
+    fetch('https://one-bite-pages.vercel.app:3000/post/'+id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -34,7 +34,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('http://127.0.0.1:4000/api/post', {
+    const response = await fetch('http://127.0.0.1:4000/api:3000/post', {
       method: 'PUT',
       body: data,
       credentials: 'include',
