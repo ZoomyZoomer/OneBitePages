@@ -45,19 +45,19 @@ function TopicPage() {
 
         switch (routeTopic) {
             case 'programming':
-              response = await fetch('http://76.76.21.241:4000/programming2');
+              response = await fetch('/programming2');
               break;
             case 'mentalHealth':
-              response = await fetch('http://76.76.21.241:4000/mentalHealth2');
+              response = await fetch('/mentalHealth2');
               break;
             case 'cooking':
-              response = await fetch('http://76.76.21.241:4000/cooking2');
+              response = await fetch('/cooking2');
               break;
             case 'sports':
-              response = await fetch('http://76.76.21.241:4000/sports2');
+              response = await fetch('/sports2');
               break;
             case 'education':
-              response = await fetch('http://76.76.21.241:4000/education2');
+              response = await fetch('/education2');
               break;
             default:
               

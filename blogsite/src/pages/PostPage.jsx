@@ -9,7 +9,7 @@ export default function PostPage() {
     const {id} = useParams();
 
     useEffect(() => {
-        fetch(`http://76.76.21.241:4000/post/${id}`)
+        fetch(`/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);
