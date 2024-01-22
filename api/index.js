@@ -103,7 +103,7 @@ app.post('/logout', (req, res) => {
 });
 
 const uploadMiddleware = multer({ dest: '/tmp' });
-app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
 
     try {
@@ -132,7 +132,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
@@ -165,7 +165,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/post', async (req, res) => {
+app.get('/api/post', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));

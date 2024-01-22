@@ -34,7 +34,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('/post', {
+    const response = await fetch('/api/post', {
       method: 'PUT',
       body: data,
       credentials: 'include',
