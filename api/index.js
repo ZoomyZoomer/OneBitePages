@@ -10,8 +10,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3');
 const fs = require('fs');
-// Connect to MongoDB when the server starts
-mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
+
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
