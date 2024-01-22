@@ -15,7 +15,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
 
-app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app'}));
+app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app/api'}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -40,7 +40,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.post('/register', async (req,res) => {
+app.post('/api/register', async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     try{
@@ -55,7 +55,7 @@ app.post('/register', async (req,res) => {
     }
   });
   
-  app.post('/login', async (req,res) => {
+  app.post('/api/login', async (req,res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
@@ -74,7 +74,7 @@ app.post('/register', async (req,res) => {
     }
   });
   
-  app.get('/profile', (req, res) => {
+  app.get('/api/profile', (req, res) => {
     mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   const { token } = req.cookies;
 
@@ -95,7 +95,7 @@ app.post('/register', async (req,res) => {
   });
 });
   
-app.post('/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
@@ -132,7 +132,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
@@ -165,7 +165,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/post', async (req, res) => {
+app.get('/api/post', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));
@@ -328,4 +328,4 @@ app.get('/cookie', async (req, res) => {
 });
 
 
-app.listen(3000);
+app.listen(443);
