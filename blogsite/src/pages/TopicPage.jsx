@@ -57,7 +57,7 @@ function TopicPage() {
               response = await fetch('https://my-blog-app.vercel.app/api/sports2');
               break;
             case 'education':
-              response = await fetch(https://my-blog-app.vercel.app/api/education2');
+              response = await fetch('https://my-blog-app.vercel.app/api/education2');
               break;
             default:
               
