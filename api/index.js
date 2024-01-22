@@ -95,7 +95,7 @@ app.post('/api/register', async (req,res) => {
   });
 });
   
-app.post('/api/logout', (req, res) => {
+app.post('/logout', (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
@@ -132,7 +132,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   let newPath = null;
   if (req.file) {
@@ -165,7 +165,7 @@ app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/api/post', async (req, res) => {
+app.get('/post', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
   try {
     res.json(await Post.find().populate('author', ['username']));

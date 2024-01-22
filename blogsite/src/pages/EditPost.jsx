@@ -12,7 +12,7 @@ export default function EditPost() {
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch('https://one-bite-pages.vercel.app/api/post/'+id)
+    fetch('https://one-bite-pages.vercel.app/post/'+id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
