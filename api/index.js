@@ -329,5 +329,5 @@ app.get('/api/cookie', async (req, res) => {
   res.json(result);
 });
 
-
-app.listen(443);
+const port = process.env.PORT || 3000;
+app.listen(port);
