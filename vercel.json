@@ -3,7 +3,7 @@
     "outputDirectory": "blogsite/dist",
     "framework": "vite",
     "functions": {
-      "api/post": {
+      "api/index.js": {
         "maxDuration": 10
       }
     },
