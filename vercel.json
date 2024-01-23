@@ -4,7 +4,7 @@
     "framework": "vite",
     "functions": {
       "api/post": {
-        "maxDuration": 30
+        "maxDuration": 10
       }
     },
     "rewrites": [
