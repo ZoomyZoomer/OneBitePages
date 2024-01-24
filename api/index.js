@@ -310,5 +310,9 @@ app.get('/api/cookie', async (req, res) => {
   res.json(result);
 });
 
+app.get('/api/test', async (req, res) => {
+  res.json("WORKS");
+})
+
 const port = process.env.PORT || 4000;
 app.listen(port);

@@ -331,6 +331,11 @@ function ArticleTrend({_id, title, description, author, topic}){
 
 
 function HomePage() {
+
+  useEffect(() => {
+    fetch("https://one-bite-pages.vercel.app/api/test")
+      .then(response => console.log(response.json()));
+  });
   
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {

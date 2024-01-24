@@ -1,16 +1,12 @@
 {
-    "buildCommand": "cd blogsite && npm install && ./node_modules/vite/bin/vite.js build",
-    "outputDirectory": "blogsite/dist",
+    "buildCommand": "cd client && yarn install && ./node_modules/vite/bin/vite.js build",
+    "outputDirectory": "client/dist",
     "framework": "vite",
-    "functions": {
-      "api/index.js": {
-        "maxDuration": 10
-      }
-    },
     "rewrites": [
       {
         "source": "/api/(.*)",
         "destination": "/api/index.js"
-      }
+      },
+      {"source": "/(.*)", "destination": "/"}
     ]
   }
