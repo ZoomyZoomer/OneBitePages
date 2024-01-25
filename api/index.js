@@ -311,26 +311,11 @@ app.get('/api/cookie', async (req, res) => {
 });
 
 app.get('/api/test', async (req, res) => {
-  try {
-    // Connect to MongoDB
-    await mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    // Query the database
-    const postCount = await Post.countDocuments();
-
-    // Send the response
-    res.json({ postCount });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  } finally {
-    // Ensure to close the MongoDB connection
-    await mongoose.connection.close();
-  }
-});
+  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
+  const Posty = require('../models/Post');
+  const post = await Posty.countDocuments();
+  res.json(post);
+})
 
 const port = process.env.PORT || 4000;
 app.listen(port);
