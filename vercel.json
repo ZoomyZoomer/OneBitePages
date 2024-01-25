@@ -1,6 +1,6 @@
 {
-    "buildCommand": "cd client && yarn install && ./node_modules/vite/bin/vite.js build",
-    "outputDirectory": "client/dist",
+    "buildCommand": "cd blogsite && yarn install && ./node_modules/vite/bin/vite.js build",
+    "outputDirectory": "blogsite/dist",
     "framework": "vite",
     "rewrites": [
       {
