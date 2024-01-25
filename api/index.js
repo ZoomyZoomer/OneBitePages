@@ -312,7 +312,8 @@ app.get('/api/cookie', async (req, res) => {
 
 app.get('/api/test', async (req, res) => {
   mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
-  res.json("WORKS");
+  const post = await Post.countDocuments();
+  res.json(post);
 })
 
 const port = process.env.PORT || 4000;
