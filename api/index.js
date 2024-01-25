@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require('cors');
 const mongoose = require("mongoose");
-const User = require('./models/User');
-const Post = require('./models/Post');
+const User = require('../models/User');
+const Post = require('../models/Post');
 const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
@@ -311,10 +311,26 @@ app.get('/api/cookie', async (req, res) => {
 });
 
 app.get('/api/test', async (req, res) => {
-  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
-  const post = await Post.countDocuments();
-  res.json(post);
-})
+  try {
+    // Connect to MongoDB
+    await mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    // Query the database
+    const postCount = await Post.countDocuments();
+
+    // Send the response
+    res.json({ postCount });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    // Ensure to close the MongoDB connection
+    await mongoose.connection.close();
+  }
+});
 
 const port = process.env.PORT || 4000;
 app.listen(port);
