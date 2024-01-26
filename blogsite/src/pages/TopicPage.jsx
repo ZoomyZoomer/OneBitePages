@@ -47,19 +47,19 @@ function TopicPage() {
 
         switch (routeTopic) {
             case 'programming':
-              response = await fetch('https://my-blog-app.vercel.app/api/programming2');
+              response = await fetch('http://localhost:4000/programming2');
               break;
             case 'mentalHealth':
-              response = await fetch('https://my-blog-app.vercel.app/api/mentalHealth2');
+              response = await fetch('http://localhost:4000/mentalHealth2');
               break;
             case 'cooking':
-              response = await fetch('https://my-blog-app.vercel.app/api/cooking2');
+              response = await fetch('http://localhost:4000/cooking2');
               break;
             case 'sports':
-              response = await fetch('https://my-blog-app.vercel.app/api/sports2');
+              response = await fetch('http://localhost:4000/sports2');
               break;
             case 'education':
-              response = await fetch('https://my-blog-app.vercel.app/api/education2');
+              response = await fetch('http://localhost:4000/education2');
               break;
             default:
               

@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require('cors');
 const mongoose = require("mongoose");
-const User = require('../models/User');
-const Post = require('../models/Post');
+const User = require('./models/User');
+const Post = require('./models/Post');
 const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
@@ -17,7 +17,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = 'asdjaisd1203810';
 const bucket ='kamil-blog-app';
 
-app.use(cors({credentials:true, origin:'https://one-bite-pages.vercel.app'}));
+app.use(cors({credentials:true, origin:'http://localhost:5173'}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,7 +42,7 @@ async function uploadToS3(path, originalFilename, mimetype) {
   return `https://${bucket}.s3.amazonaws.com/${newFilename}`;
 }
 
-app.post('/api/register', async (req,res) => {
+app.post('/register', async (req,res) => {
     const {username,password} = req.body;
     try{
       const userDoc = await User.create({
@@ -56,7 +56,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.post('/api/login', async (req,res) => {
+  app.post('/login', async (req,res) => {
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -74,7 +74,7 @@ app.post('/api/register', async (req,res) => {
     }
   });
   
-  app.get('/api/profile', (req, res) => {
+  app.get('/profile', (req, res) => {
   const { token } = req.cookies;
 
   if (!token) {
@@ -94,14 +94,14 @@ app.post('/api/register', async (req,res) => {
   });
 });
   
-app.post('/api/logout', (req, res) => {
+app.post('/logout', (req, res) => {
   // Clear the 'token' cookie by setting it to null and expiring it immediately
   res.cookie('token', null, { expires: new Date(0), httpOnly: true });
   res.json('Logged out successfully');
 });
 
 const uploadMiddleware = multer({ dest: '/tmp' });
-app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
     try {
         const {originalname, path, mimetype} = req.file;
@@ -129,7 +129,7 @@ app.post('/api/post', uploadMiddleware.single('file'), async (req, res) => {
 
 });
 
-app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   let newPath = null;
   if (req.file) {
     const {originalname,path} = req.file;
@@ -161,7 +161,7 @@ app.put('/api/post',uploadMiddleware.single('file'), async (req,res) => {
 
 });
 
-app.get('/api/post', async (req, res) => {
+app.get('/post', async (req, res) => {
   try {
     res.json(await Post.find().populate('author', ['username']));
   } catch(e) {
@@ -170,7 +170,7 @@ app.get('/api/post', async (req, res) => {
   }
 })
 
-app.get('/api/programming', async (req, res) => {
+app.get('/programming', async (req, res) => {
     try {
         const programmingDoc = await Post.find({ topic: "programming" })
         .populate('author', ['username'])
@@ -183,7 +183,7 @@ app.get('/api/programming', async (req, res) => {
     };
 });
 
-app.get('/api/programming2', async (req, res) => {
+app.get('/programming2', async (req, res) => {
   try {
       const programmingDoc = await Post.find({ topic: "programming" })
       .populate('author', ['username'])
@@ -195,7 +195,7 @@ app.get('/api/programming2', async (req, res) => {
   };
 });
 
-app.get('/api/mentalHealth', async (req, res) => {
+app.get('/mentalHealth', async (req, res) => {
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
       .populate('author', ['username'])
@@ -208,7 +208,7 @@ app.get('/api/mentalHealth', async (req, res) => {
   };
 });
 
-app.get('/api/mentalHealth2', async (req, res) => {
+app.get('/mentalHealth2', async (req, res) => {
   try {
       const mentalHealthDoc = await Post.find({ topic: "mentalHealth" })
       .populate('author', ['username'])
@@ -220,7 +220,7 @@ app.get('/api/mentalHealth2', async (req, res) => {
   };
 });
 
-app.get('/api/cooking', async (req, res) => {
+app.get('/cooking', async (req, res) => {
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
@@ -233,7 +233,7 @@ app.get('/api/cooking', async (req, res) => {
   };
 });
 
-app.get('/api/cooking2', async (req, res) => {
+app.get('/cooking2', async (req, res) => {
   try {
       const cookingDoc = await Post.find({ topic: "cooking" })
       .populate('author', ['username'])
@@ -245,7 +245,7 @@ app.get('/api/cooking2', async (req, res) => {
   };
 });
 
-app.get('/api/education', async (req, res) => {
+app.get('/education', async (req, res) => {
   try {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
@@ -258,7 +258,7 @@ app.get('/api/education', async (req, res) => {
   };
 });
 
-app.get('/api/education2', async (req, res) => {
+app.get('/education2', async (req, res) => {
   try {
       const educationDoc = await Post.find({ topic: "education" })
       .populate('author', ['username'])
@@ -270,7 +270,7 @@ app.get('/api/education2', async (req, res) => {
   };
 });
 
-app.get('/api/sports', async (req, res) => {
+app.get('/sports', async (req, res) => {
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
       .populate('author', ['username'])
@@ -283,7 +283,7 @@ app.get('/api/sports', async (req, res) => {
   };
 });
 
-app.get('/api/sports2', async (req, res) => {
+app.get('/sports2', async (req, res) => {
   try {
       const sportsDoc = await Post.find({ topic: "sports" })
       .populate('author', ['username'])
@@ -295,14 +295,14 @@ app.get('/api/sports2', async (req, res) => {
   };
 });
 
-app.get('/api/post/:id', async (req, res) => {
+app.get('/post/:id', async (req, res) => {
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
   res.json(postDoc);
   
 })
 
-app.get('/api/cookie', async (req, res) => {
+app.get('/cookie', async (req, res) => {
   const count =  await Post.countDocuments();
   var randomNumber = Math.floor(Math.random() * count);
   const result = await Post.findOne({}).skip(randomNumber);
@@ -310,12 +310,4 @@ app.get('/api/cookie', async (req, res) => {
   res.json(result);
 });
 
-app.get('/api/test', async (req, res) => {
-  mongoose.connect('mongodb+srv://blog:zyHxQ0r96SA6nCAY@cluster0.l9mvpea.mongodb.net/?retryWrites=true&w=majority');
-  const Posty = require('../models/Post');
-  const post = await Posty.countDocuments();
-  res.json(post);
-})
-
-const port = process.env.PORT || 4000;
-app.listen(port);
+app.listen(4000);
